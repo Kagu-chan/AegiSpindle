@@ -35,7 +35,7 @@ See [doc](doc/README.md) directory
 
 Requirements
 ------------
-See [REQUIREMENTS](REQUIREMENTS) file
+See [REQUIREMENTS](deps)
 
 License
 -------
