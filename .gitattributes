@@ -1,0 +1,23 @@
+# Auto detect text files and perform LF normalization
+* text=auto     eol=lf
+
+# Git files
+.gitattributes  text
+.gitignore      text
+.gitmodules     text
+
+# Documentations
+*.md            text
+*.html          diff=html
+*.css           diff=css
+
+# Source code
+*.lua           diff=lua
+*.js            diff=js
+
+# Images
+*.bmp           binary
+*.png           binary
+
+# Audio
+*.wav           binary
