@@ -3,7 +3,11 @@ AegiSpindle
 
 Definition
 ----------
-**AegiSpindle** is an extended library to use for karaoke templating or typesetting and create ASS (Advanced Substation Alpha) files. It can be used as standalone library or as AegiSub plugin. It is developet as a compilation and rewrite of FXSpindle (a NyuFX rewrite) and Yutils (a typeset library).
+**AegiSpindle** is an extended library to use for karaoke templating or typesetting and create ASS (Advanced Substation Alpha) files. 
+
+It can be used as standalone library or as AegiSub plugin. 
+
+It is developet as a compilation and rewrite of FXSpindle (a NyuFX rewrite) and Yutils (a typeset library).
 
 Environment
 -----------
@@ -15,13 +19,14 @@ It's recommend to learn ASS as well as Lua before usage, but even without that i
 
 Examples
 --------
-Some examples of FXSpindle or AegiSpindle KaraokeFX you can find [here](http://goo.gl/DXe7Sd).
-Advanced overview (scripts written to create effects) you can find [here](https://github.com/Kagurame/KaraFX)
-Some extensions you can find [here](https://github.com/Kagurame/LuaFXExtensions)
+* Some examples of FXSpindle or AegiSpindle KaraokeFX you can find [here](http://goo.gl/DXe7Sd).
+* Advanced overview (scripts written to create effects) you can find [here](https://github.com/Kagurame/KaraFX)
+* Some extensions you can find [here](https://github.com/Kagurame/LuaFXExtensions)
 
 Releases
 --------
 Currently there are no releases since it's a early development state.
+
 Feel free to clone this repository and play a bit with it.
 
 Usage
