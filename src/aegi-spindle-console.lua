@@ -13,7 +13,4 @@ Spindle.modules.load("oop")
 Spindle.modules.load("vectors")
 Spindle.modules.load("math_vectors")
 
-i = Vector3D.new(2, 3, 7)
-print(i:to2d())
-
 Spindle.generateWrapper()

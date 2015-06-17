@@ -27,6 +27,6 @@ Spindle.config = {
 		Spindle.config.keyValues = keyValues
 	end,
 	buildWrapper = function()
-		--print("TODO")
+		Spindle.dev.todo("Write wrapper")
 	end,
 }

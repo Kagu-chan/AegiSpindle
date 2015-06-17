@@ -6,7 +6,8 @@ _G.Spindle = {
 		Spindle.debug(string.format("Aegi Spindle V %s [LuaJIT (%s)]", Spindle.library.version, _VERSION))
 	end,
 	library = {
-		version = "0.1"
+		version = "0.1",
+        devTracebackDefault = 3,
 	},
 	generateWrapper = function()
 		for _moduleName, _module in pairs(Spindle) do
@@ -16,6 +17,7 @@ _G.Spindle = {
 		end
 	end,
     initializeAegisub = function()
+        Spindle.modules.require("auto4-base")
         for _moduleName, _module in pairs(Spindle) do
 			if type(_module) == "table" and _module.initAegisub and type(_module.initAegisub) == "function" then 
 				_module.initAegisub()
@@ -118,6 +120,33 @@ _G.Spindle = {
 			error(table.concat(messages, "\n") .. "\n", 3)
 		end
 	end,
+    -- Development Sub Module
+    dev = {
+        deeperTrace = function(i)
+            Spindle.assert({"number"}, {i})
+            Spindle.library.devTracebackOverwrite = i
+        end,
+        from = function()
+            local info = debug.getinfo(
+                Spindle.library.devTracebackOverwrite and Spindle.library.devTracebackOverwrite or Spindle.library.devTracebackDefault
+            )
+            Spindle.library.devTracebackOverwrite = nil
+            return ("[%s:line(%d):func(%s)]"):format(info.source, info.linedefined, info.name)
+        end,
+        todo = function(message)
+            Spindle.assert({"string"}, {message})
+            Spindle.debug(("TODO: %q %s"):format(message, Spindle.dev.from()))
+        end,
+        fixme = function(message)
+            message = message or ""
+            Spindle.assert({"string"}, {message})
+            Spindle.debug(("FIXME: %s MESSAGE: %q"):format(Spindle.dev.from(), message))
+        end,
+        deprecated = function(instead)
+            Spindle.assert({"string"}, {instead})
+            Spindle.debug(("DEPRECATED: %s is deprecated!\n\tUse %s instead."):format(Spindle.dev.from(), instead))
+        end
+    },
 }
 
 Spindle.sayHello()

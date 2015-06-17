@@ -45,4 +45,7 @@ U-04000000 - U-7FFFFFFF:		1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
 		Spindle.assert({"string"}, {s})
 		return Spindle.utf8.chartable(s).n
 	end,
+	buildWrapper = function()
+		Spindle.dev.todo("Write wrapper")
+	end,
 }

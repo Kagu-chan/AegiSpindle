@@ -43,4 +43,7 @@ Spindle.table = {
 		end
 		return depth and copy_recursive_n(t, depth) or copy_recursive(t)
 	end,
+	buildWrapper = function()
+		Spindle.dev.todo("Write wrapper")
+	end,
 }

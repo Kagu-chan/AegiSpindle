@@ -33,10 +33,4 @@ Spindle.type = {
 			end
 		end
 	end,
-	--buildWrapper = function()
-	--	local _t = Spindle.type
-	--	for _n, _v in ipairs(_t) do
-	--		print(_n)
-	--	end
-	--end,
 }

@@ -31,5 +31,8 @@ Spindle.text = {
 	len = function(s)
 		Spindle.assert({"string"}, {s})
 		return Spindle.text.wordtable(s).n
-	end
+	end,
+	buildWrapper = function()
+		Spindle.dev.todo("Write wrapper")
+	end,
 }
