@@ -12,5 +12,6 @@ Spindle.modules.load("math")
 Spindle.modules.load("oop")
 Spindle.modules.load("vectors")
 Spindle.modules.load("math_vectors")
+Spindle.modules.load("ffi")
 
 Spindle.generateWrapper()
