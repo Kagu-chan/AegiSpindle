@@ -13,7 +13,7 @@ Spindle.ffi = {
             Spindle.cache.set("ffi", require("ffi"))
             
             if Spindle.ffi.ffi().os == "Windows" then
-                Spindle.cache.set("advapi", Spindle.ffi.ffi.load("Advapi32"))
+                Spindle.cache.set("advapi", Spindle.ffi.ffi().load("Advapi32"))
                 Spindle.ffi.cdef(Spindle.ffi.defines.windows.advapi)
             else
                 pcall(function()
@@ -36,10 +36,10 @@ Spindle.ffi = {
         end
     end,
     load = function(...)
-        return Spindle.ffi.ffi.load(...)
+        return Spindle.ffi.ffi().load(...)
     end,
     cdef = function(...)
-        return Spindle.ffi.ffi.cdef(...)
+        return Spindle.ffi.ffi().cdef(...)
     end,
     ffi = function()
         return Spindle.cache.get("ffi")
