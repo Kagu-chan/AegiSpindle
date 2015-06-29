@@ -7,7 +7,10 @@ _G.Spindle = {
 	end,
 	library = {
 		version = "0.1",
-        devTracebackDefault = 3,
+		devTracebackDefault = 3,
+		devPrintTodo = true,
+		devPrintFixme = true,
+		devPrintDeprecated = true,
 	},
 	generateWrapper = function()
 		for _moduleName, _module in pairs(Spindle) do
@@ -126,6 +129,22 @@ _G.Spindle = {
             Spindle.assert({"number"}, {i})
             Spindle.library.devTracebackOverwrite = i
         end,
+	setDebug = function(name, state)
+		local key = "devPrint" .. name:lower():gsub("^%l", string.upper)
+		Spindle.library[key] = state
+	end,
+	disable = function(...)
+		local arguments = {...}
+		for i, arg in ipairs(arguments) do
+			Spindle.dev.setDebug(arg, false)
+		end
+	end,
+	enable = function(...)
+		local arguments = {...}
+		for i, arg in ipairs(arguments) do
+			Spindle.dev.setDebug(arg, true)
+		end
+	end,
         from = function()
             local info = debug.getinfo(
                 Spindle.library.devTracebackOverwrite and Spindle.library.devTracebackOverwrite or Spindle.library.devTracebackDefault
@@ -134,15 +153,18 @@ _G.Spindle = {
             return ("[%s:line(%d):func(%s)]"):format(info.source, info.linedefined, info.name)
         end,
         todo = function(message)
+	    if not Spindle.library.devPrintTodo then return end
             Spindle.assert({"string"}, {message})
             Spindle.debug(("TODO: %q %s"):format(message, Spindle.dev.from()))
         end,
         fixme = function(message)
+	    if not Spindle.library.devPrintFixme then return end
             message = message or ""
             Spindle.assert({"string"}, {message})
             Spindle.debug(("FIXME: %s MESSAGE: %q"):format(Spindle.dev.from(), message))
         end,
         deprecated = function(instead)
+	    if not Spindle.library.devPrintDeprecated then return end
             Spindle.assert({"string"}, {instead})
             Spindle.debug(("DEPRECATED: %s is deprecated!\n\tUse %s instead."):format(Spindle.dev.from(), instead))
         end

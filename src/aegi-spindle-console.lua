@@ -1,6 +1,7 @@
 require("aegi-spindle-modules")
 
 Spindle.modules.trace = false
+Spindle.dev.disable("todo", "fixme", "deprecated")
 
 Spindle.modules.load("type")
 Spindle.modules.load("config")
