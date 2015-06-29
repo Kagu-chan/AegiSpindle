@@ -2,55 +2,55 @@ Spindle.modules.require("config")
 Spindle.modules.require("cache")
 
 Spindle.ffi = {
-    -- Overwrite this with a function to do additional stuff after initialization
-    user_init = false,
-    initialize = function()
-        if not Spindle.cache.get("ffi_init") then
-            Spindle.cache.set("fontconfig", false)
-            Spindle.cache.set("pangocairo", false)
-            Spindle.cache.set("advapi", false)
-            Spindle.cache.set("libpng", false)
-            Spindle.cache.set("ffi", require("ffi"))
-            
-            if Spindle.ffi.ffi().os == "Windows" then
-                Spindle.cache.set("advapi", Spindle.ffi.ffi().load("Advapi32"))
-                Spindle.ffi.cdef(Spindle.ffi.defines.windows.advapi)
-            else
-                pcall(function()
-                    Spindle.cache.set("pangocairo", Spindle.ffi.load("pangocairo-1.0.so"))
-                    Spindle.ffi.cdef(Spindle.ffi.defines.unix.pangocairo)
-                end)
-                pcall(function()
-                    Spindle.cache.set("fontconfig", Spindle.ffi.load("fontconfig"))
-                    Spindle.ffi.cdef(Spindle.ffi.defines.unix.fontconfig)
-                end)
-            end
-            
-            pcall(function()
-                Spindle.cache.set("libpng", Spindle.ffi.load(Spindle.config.getOrDefault("LibPNGPath", "libpng")))
-                Spindle.ffi.cdef(Spindle.ffi.defines.misc.libpng)
-            end)
-            
-            if Spindle.ffi.user_init and type(Spindle.ffi.user_init) == "function" then Spindle.ffi.user_init() end
-            Spindle.cache.set("ffi_init", true)
-        end
-    end,
-    load = function(...)
-        return Spindle.ffi.ffi().load(...)
-    end,
-    cdef = function(...)
-        return Spindle.ffi.ffi().cdef(...)
-    end,
-    ffi = function()
-        return Spindle.cache.get("ffi")
-    end,
-    fontconfig = function() return Spindle.cache.get("fontconfig") end,
-    pangocairo = function() return Spindle.cache.get("pangocairo") end,
-    advapi = function() return Spindle.cache.get("advapi") end,
-    libpng = function() return Spindle.cache.get("libpng") end,
-    defines = {
-        misc = {
-            libpng = [[
+	-- Overwrite this with a function to do additional stuff after initialization
+	user_init = false,
+	initialize = function()
+		if not Spindle.cache.get("ffi_init") then
+			Spindle.cache.set("fontconfig", false)
+			Spindle.cache.set("pangocairo", false)
+			Spindle.cache.set("advapi", false)
+			Spindle.cache.set("libpng", false)
+			Spindle.cache.set("ffi", require("ffi"))
+			
+			if Spindle.ffi.ffi().os == "Windows" then
+				Spindle.cache.set("advapi", Spindle.ffi.ffi().load("Advapi32"))
+				Spindle.ffi.cdef(Spindle.ffi.defines.windows.advapi)
+			else
+				pcall(function()
+					Spindle.cache.set("pangocairo", Spindle.ffi.load("pangocairo-1.0.so"))
+					Spindle.ffi.cdef(Spindle.ffi.defines.unix.pangocairo)
+				end)
+				pcall(function()
+					Spindle.cache.set("fontconfig", Spindle.ffi.load("fontconfig"))
+					Spindle.ffi.cdef(Spindle.ffi.defines.unix.fontconfig)
+				end)
+			end
+			
+			pcall(function()
+				Spindle.cache.set("libpng", Spindle.ffi.load(Spindle.config.getOrDefault("LibPNGPath", "libpng")))
+				Spindle.ffi.cdef(Spindle.ffi.defines.misc.libpng)
+			end)
+			
+			if Spindle.ffi.user_init and type(Spindle.ffi.user_init) == "function" then Spindle.ffi.user_init() end
+			Spindle.cache.set("ffi_init", true)
+		end
+	end,
+	load = function(...)
+		return Spindle.ffi.ffi().load(...)
+	end,
+	cdef = function(...)
+		return Spindle.ffi.ffi().cdef(...)
+	end,
+	ffi = function()
+		return Spindle.cache.get("ffi")
+	end,
+	fontconfig = function() return Spindle.cache.get("fontconfig") end,
+	pangocairo = function() return Spindle.cache.get("pangocairo") end,
+	advapi = function() return Spindle.cache.get("advapi") end,
+	libpng = function() return Spindle.cache.get("libpng") end,
+	defines = {
+		misc = {
+			libpng = [[
 static const int PNG_SIGNATURE_SIZE = 8;
 typedef unsigned char png_byte;
 typedef png_byte* png_bytep;
@@ -97,10 +97,10 @@ png_uint_32 png_get_image_height(png_const_structp, png_const_infop);
 png_byte png_get_color_type(png_const_structp, png_const_infop);
 png_size_t png_get_rowbytes(png_const_structp, png_const_infop);
 png_bytep* png_get_rows(png_const_structp, png_const_infop);
-            ]],
-        },
-        windows = {
-            advapi = [[
+			]],
+		},
+		windows = {
+			advapi = [[
 enum{CP_UTF8 = 65001};
 enum{MM_TEXT = 1};
 enum{TRANSPARENT = 1};
@@ -234,18 +234,18 @@ int EnumFontFamiliesExW(HDC, LPLOGFONTW, FONTENUMPROC, LPARAM, DWORD);
 LONG RegOpenKeyExA(HKEY, LPCSTR, DWORD, REGSAM, PHKEY);
 LONG RegCloseKey(HKEY);
 LONG RegEnumValueW(HKEY, DWORD, LPWSTR, LPDWORD, LPDWORD, LPDWORD, LPBYTE, LPDWORD);
-            ]],
-        },
-        unix = {
-            pangocairo = [[
+			]],
+		},
+		unix = {
+			pangocairo = [[
 typedef enum{
-    CAIRO_FORMAT_INVALID   = -1,
-    CAIRO_FORMAT_ARGB32    = 0,
-    CAIRO_FORMAT_RGB24     = 1,
-    CAIRO_FORMAT_A8        = 2,
-    CAIRO_FORMAT_A1        = 3,
-    CAIRO_FORMAT_RGB16_565 = 4,
-    CAIRO_FORMAT_RGB30     = 5
+	CAIRO_FORMAT_INVALID   = -1,
+	CAIRO_FORMAT_ARGB32	= 0,
+	CAIRO_FORMAT_RGB24	 = 1,
+	CAIRO_FORMAT_A8		= 2,
+	CAIRO_FORMAT_A1		= 3,
+	CAIRO_FORMAT_RGB16_565 = 4,
+	CAIRO_FORMAT_RGB30	 = 5
 }cairo_format_t;
 typedef void cairo_surface_t;
 typedef void cairo_t;
@@ -361,8 +361,8 @@ void pango_cairo_layout_path(cairo_t*, PangoLayout*);
 void cairo_new_path(cairo_t*);
 cairo_path_t* cairo_copy_path(cairo_t*);
 void cairo_path_destroy(cairo_path_t*);
-            ]],
-            fontconfig = [[
+			]],
+			fontconfig = [[
 typedef void FcConfig;
 typedef void FcPattern;
 typedef struct{
@@ -394,7 +394,7 @@ FcFontSet* FcFontList(FcConfig*, FcPattern*, FcObjectSet*);
 void FcFontSetDestroy(FcFontSet*);
 FcResult FcPatternGetString(FcPattern*, const char*, int, FcChar8**);
 FcResult FcPatternGetBool(FcPattern*, const char*, int, FcBool*);
-            ]],
-        },
-    },
+			]],
+		},
+	},
 }

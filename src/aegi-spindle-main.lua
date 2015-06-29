@@ -19,14 +19,14 @@ _G.Spindle = {
 			end
 		end
 	end,
-    initializeAegisub = function()
-        Spindle.modules.require("auto4-base")
-        for _moduleName, _module in pairs(Spindle) do
+	initializeAegisub = function()
+		Spindle.modules.require("auto4-base")
+		for _moduleName, _module in pairs(Spindle) do
 			if type(_module) == "table" and _module.initAegisub and type(_module.initAegisub) == "function" then 
 				_module.initAegisub()
 			end
 		end
-    end,
+	end,
 	--[[ Checks function parameters
 		types and values must be in format:
 			types: table with expected type(s) {"type", "type", true, {"string", "number"}}
@@ -123,12 +123,12 @@ _G.Spindle = {
 			error(table.concat(messages, "\n") .. "\n", 3)
 		end
 	end,
-    -- Development Sub Module
-    dev = {
-        deeperTrace = function(i)
-            Spindle.assert({"number"}, {i})
-            Spindle.library.devTracebackOverwrite = i
-        end,
+	-- Development Sub Module
+	dev = {
+		deeperTrace = function(i)
+			Spindle.assert({"number"}, {i})
+			Spindle.library.devTracebackOverwrite = i
+		end,
 	setDebug = function(name, state)
 		local key = "devPrint" .. name:lower():gsub("^%l", string.upper)
 		Spindle.library[key] = state
@@ -145,30 +145,30 @@ _G.Spindle = {
 			Spindle.dev.setDebug(arg, true)
 		end
 	end,
-        from = function()
-            local info = debug.getinfo(
-                Spindle.library.devTracebackOverwrite and Spindle.library.devTracebackOverwrite or Spindle.library.devTracebackDefault
-            )
-            Spindle.library.devTracebackOverwrite = nil
-            return ("[%s:line(%d):func(%s)]"):format(info.source, info.linedefined, info.name)
-        end,
-        todo = function(message)
-	    if not Spindle.library.devPrintTodo then return end
-            Spindle.assert({"string"}, {message})
-            Spindle.debug(("TODO: %q %s"):format(message, Spindle.dev.from()))
-        end,
-        fixme = function(message)
-	    if not Spindle.library.devPrintFixme then return end
-            message = message or ""
-            Spindle.assert({"string"}, {message})
-            Spindle.debug(("FIXME: %s MESSAGE: %q"):format(Spindle.dev.from(), message))
-        end,
-        deprecated = function(instead)
-	    if not Spindle.library.devPrintDeprecated then return end
-            Spindle.assert({"string"}, {instead})
-            Spindle.debug(("DEPRECATED: %s is deprecated!\n\tUse %s instead."):format(Spindle.dev.from(), instead))
-        end
-    },
+		from = function()
+			local info = debug.getinfo(
+				Spindle.library.devTracebackOverwrite and Spindle.library.devTracebackOverwrite or Spindle.library.devTracebackDefault
+			)
+			Spindle.library.devTracebackOverwrite = nil
+			return ("[%s:line(%d):func(%s)]"):format(info.source, info.linedefined, info.name)
+		end,
+		todo = function(message)
+			if not Spindle.library.devPrintTodo then return end
+			Spindle.assert({"string"}, {message})
+			Spindle.debug(("TODO: %q %s"):format(message, Spindle.dev.from()))
+		end,
+		fixme = function(message)
+			if not Spindle.library.devPrintFixme then return end
+			message = message or ""
+			Spindle.assert({"string"}, {message})
+			Spindle.debug(("FIXME: %s MESSAGE: %q"):format(Spindle.dev.from(), message))
+		end,
+		deprecated = function(instead)
+			if not Spindle.library.devPrintDeprecated then return end
+			Spindle.assert({"string"}, {instead})
+			Spindle.debug(("DEPRECATED: %s is deprecated!\n\tUse %s instead."):format(Spindle.dev.from(), instead))
+		end
+	},
 }
 
 Spindle.sayHello()
