@@ -1,14 +1,10 @@
-dofile("aegi-spindle-modules")
+require("aegi-spindle-modules")
 
 Spindle.modules.trace = false
 Spindle.modules.requireAegisub()
+Spindle.modules.load("loader")
 
-Spindle.modules.load("config")
-Spindle.modules.load("cache")
-Spindle.modules.load("table")
-Spindle.modules.load("text")
-Spindle.modules.load("utf8")
-
+Spindle.initialize()
 Spindle.initializeAegisub()
 
 local tr = aegisub.gettext

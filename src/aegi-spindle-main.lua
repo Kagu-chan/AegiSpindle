@@ -12,6 +12,17 @@ _G.Spindle = {
 		devPrintFixme = true,
 		devPrintDeprecated = true,
 	},
+	initialize = function(printTodo, printFixme, printDeprecated)
+		printTodo = (printTodo or printTodo == nil) and true or false
+		printFixme = (printFixme or printFixme == nil) and true or false
+		printDeprecated = (printDeprecated or printDeprecated == nil) and true or false
+		Spindle.assert({"boolean", "boolean", "boolean"}, {printTodo, printFixme, printDeprecated})
+		Spindle.dev.setDebug("todo", printTodo)
+		Spindle.dev.setDebug("fixme", printFixme)
+		Spindle.dev.setDebug("deprecated", printDeprecated)
+		Spindle.generateWrapper()
+		
+	end,
 	generateWrapper = function()
 		for _moduleName, _module in pairs(Spindle) do
 			if type(_module) == "table" and _module.buildWrapper and type(_module.buildWrapper) == "function" then 
@@ -129,22 +140,22 @@ _G.Spindle = {
 			Spindle.assert({"number"}, {i})
 			Spindle.library.devTracebackOverwrite = i
 		end,
-	setDebug = function(name, state)
-		local key = "devPrint" .. name:lower():gsub("^%l", string.upper)
-		Spindle.library[key] = state
-	end,
-	disable = function(...)
-		local arguments = {...}
-		for i, arg in ipairs(arguments) do
-			Spindle.dev.setDebug(arg, false)
-		end
-	end,
-	enable = function(...)
-		local arguments = {...}
-		for i, arg in ipairs(arguments) do
-			Spindle.dev.setDebug(arg, true)
-		end
-	end,
+		setDebug = function(name, state)
+			local key = "devPrint" .. name:lower():gsub("^%l", string.upper)
+			Spindle.library[key] = state
+		end,
+		disable = function(...)
+			local arguments = {...}
+			for i, arg in ipairs(arguments) do
+				Spindle.dev.setDebug(arg, false)
+			end
+		end,
+		enable = function(...)
+			local arguments = {...}
+			for i, arg in ipairs(arguments) do
+				Spindle.dev.setDebug(arg, true)
+			end
+		end,
 		from = function()
 			local info = debug.getinfo(
 				Spindle.library.devTracebackOverwrite and Spindle.library.devTracebackOverwrite or Spindle.library.devTracebackDefault
