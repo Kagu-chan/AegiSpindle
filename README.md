@@ -36,6 +36,7 @@ See [doc](doc/README.md) directory
 Requirements
 ------------
 See [REQUIREMENTS](deps)
+**Unix Support is cancelled since fonts causes to many problems on different systems!**
 
 License
 -------
