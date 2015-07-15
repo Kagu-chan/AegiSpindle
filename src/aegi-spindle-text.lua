@@ -1,6 +1,6 @@
 --[[
 name:Text
-description:Text- and String-Funktions
+description:Text- and String-Functions
 extends:
 depends:
 author:Kagu-chan
