@@ -1,5 +1,5 @@
 --[[
-module-name:Cache
+name:Cache
 description:Value cache for AegiSpindle
 extends:
 depends:

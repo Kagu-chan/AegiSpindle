@@ -8,6 +8,7 @@ version:1.0
 type:module
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/core/loader.md
 docInternal:
+	
 ]]
 
 Spindle.modules.load("type")
