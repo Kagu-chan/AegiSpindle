@@ -1,3 +1,22 @@
+--[[
+name:UTF8
+description:UTF8 Text Module
+extends:
+depends:
+author:Kagu-chan
+version:1.0
+type:module
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/utf8.md
+docInternal:
+	Spindle.utf8 UTF8 Text Module
+	Spindle.utf8.charrange(string s, int i) Returns bytes charrange
+	Spindle.utf8.chars(string s) Iterator function through texts characters
+	Spindle.utf8.chartable(string s) Returns a table of texts characters
+	Spindle.utf8.len(string s) Returns strings lentgh
+	Spindle.utf8.bton(string s) return texts bytes as binary unsignet integer representation
+	Spindle.utf8.buildWrapper() Wrapper function for core application
+]]
+
 Spindle.utf8 = {
 	--[[ UTF32 -> UTF8
 U-00000000 - U-0000007F:		0xxxxxxx

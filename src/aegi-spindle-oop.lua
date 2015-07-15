@@ -1,3 +1,25 @@
+--[[
+name:OOP
+description:Module for pseudo OOP support
+extends:
+depends:Table
+author:Kagu-chan
+version:1.0
+type:module
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/oop.md
+docInternal:
+	Spindle.oop Module for pseudo OOP support
+	Spindle.oop.generateClass(string name, table properties, table functions, table constructor, ...) Generate a class construct named by name, with given properties and functions. constructor contains name - type relation for constructor parameters, tupel parameter the order of constructor variables
+	Spindle.oop.addMetaFunctions(table meta, table order) Add meta functions to meta table
+	Spindle.oop.addType(table meta, string name) Add type function to meta table
+	Spindle.oop.addProperties(table meta, table properties) Add properties to meta table
+	Spindle.oop.addFunctions(table meta, table functions) Add functions to meta table
+	Spindle.oop.createConstructor(table meta, table constructor, table properties, table order) Add constructor function to meta table
+	Spindle.oop.getPropertyTypeRelations(table properties) Returns a table containing property to type relations
+	rawtype(mixed object) type() function
+	type(midex object) type() function extended by meta table type getter
+]]
+
 Spindle.modules.require("table")
 
 Spindle.oop = {
@@ -16,7 +38,7 @@ Spindle.oop = {
 	addMetaFunctions = function(meta, order)
 		meta.__index = meta
 		meta.__newindex = function(object, key, value)
-			if object[key]  and type(object[key]) == "function" and object["_" .. key] then
+			if object[key] and type(object[key]) == "function" and object["_" .. key] then
 				object[key](object, value)
 			else
 				error("Not allowed to set or overwrite property definitions!", 2)

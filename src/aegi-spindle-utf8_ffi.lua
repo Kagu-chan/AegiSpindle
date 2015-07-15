@@ -1,3 +1,18 @@
+--[[
+name:UTF8-FFI
+description:UTFS8 ffi extension module
+extends:UTF8
+depends:UTF8,FFI
+author:Kagu-chan
+version:1.0
+type:module
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/utf8-ffi.md
+docInternal:
+	Spindle.utf8.utf8_to_utf16(string s) Returns utf16 representation of utf8 string
+	Spindle.utf8.utf16_to_utf8(string s) Returns utf8 representation of utf16 string
+	Spindle.utf8.buildWrapper() Wrapper function for core application
+]]
+
 Spindle.modules.require("utf8")
 Spindle.modules.require("ffi")
 

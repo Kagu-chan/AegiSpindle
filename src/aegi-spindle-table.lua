@@ -1,3 +1,20 @@
+--[[
+name:Table
+description:Module for table functions
+extends:
+depends:
+author:Kagu-chan
+version:1.0
+type:module
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/table.md
+docInternal:
+	Spindle.table Module for table functions
+	Spindle.table.tostring(table t) Returns tables string representation
+	Spindle.table.removekey(table table, string key) Remove a key from a table
+	Spindle.table.copy(table table[, number depth]) Returns a copy of a table. Full copy if depth is not given
+	Spindle.table.buildWrapper() Wrapper function for core application
+]]
+
 Spindle.table = {
 	tostring = function(t)
 		Spindle.assert({"table"}, {t})
