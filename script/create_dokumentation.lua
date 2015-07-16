@@ -235,7 +235,11 @@ local function create_docs(base_path, file_pattern)
 		else
 			for i=1, #doc.docInternal do
 				local current_doc = doc.docInternal[i]
-				f:write("\n", ("###%s\n%s"):format(split_doc_line(current_doc)), "\n")
+				if current_doc:sub(1,1) == "#" then
+					f:write("\n\n`", current_doc:sub(2), "`\n")
+				else
+					f:write("\n", ("###%s\n%s"):format(split_doc_line(current_doc)), "\n")
+				end
 			end
 		end
 		

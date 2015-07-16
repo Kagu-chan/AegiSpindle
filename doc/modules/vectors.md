@@ -97,8 +97,8 @@ Parse instance to Vector2D
 ###Vector4D:to3d()
 Parse instance to Vector3D
 
-####only
-if module "type" is loaded:
+
+`only if module "type" is loaded:`
 
 ###Spindle.type.isvector2d(mixed object)
 Returns is x is a vector2d type
