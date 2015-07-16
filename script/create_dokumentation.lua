@@ -89,6 +89,11 @@ table.tostring = function(t)
 end
 
 local function create_docs(base_path, file_pattern)
+	local fcount = 0
+	local ecount = 0
+	local example_file = io.open(base_path .. "/doc/examples", "r")
+	local examples = example_file:read("*a")
+	example_file:close()
 	local function get_files(path)
 		local files, doc_files = read_dir(path), {}
 		for i=1, files.n do
@@ -214,6 +219,15 @@ local function create_docs(base_path, file_pattern)
 			end
 			return result
 		end
+		local function find_example(current_doc)
+			local doc_string = "[" .. current_doc .. "]"
+			local pos_s, pos_e = examples:find(doc_string, 1, true)
+			if not pos_s then return "" end
+			ecount = ecount + 1
+			local subs = examples:sub(pos_e+2)
+			local next_start = subs:find("[", 1, true)
+			return ("\n```lua\n%s\n```"):format(subs:sub(1,next_start and next_start-2 or nil))
+		end
 		local out_name = base_path .. "/doc/" .. doc.docs_path
 		local f = io.open(out_name, "w")
 		f:seek("set")
@@ -236,11 +250,14 @@ local function create_docs(base_path, file_pattern)
 			f:write("\n***No function or property documentation for this script!***\n")
 		else
 			for i=1, #doc.docInternal do
+				fcount = fcount + 1
 				local current_doc = doc.docInternal[i]
 				if current_doc:sub(1,1) == "#" then
 					f:write("\n\n`", current_doc:sub(2), "`\n")
 				else
-					f:write("\n", ("###%s\n%s"):format(split_doc_line(current_doc)), "\n")
+					local doc_head, doc_tail = split_doc_line(current_doc)
+					local example = find_example(doc_head)
+					f:write("\n", ("###%s\n%s%s"):format(doc_head, doc_tail, example), "\n")
 				end
 			end
 		end
@@ -261,71 +278,7 @@ local function create_docs(base_path, file_pattern)
 		write_doc(docs_table)
 	end
 	write_readme(docs)
+	print("Created documentation for " .. fcount .. " functions or properties and found " .. ecount .. " examples")
 end
 
 create_docs("..", "aegi-spindle-")
---[[
-def create_hash(comment)
-	internal = false
-	hash = {}
-	comment.each_line { |line|
-		line.sub!("\n", "")
-		if line.include?(":") && !internal
-			key, value = *line.split(":", 2)
-			internal = key == "docInternal" ? [] : false
-			unless internal
-				hash[key.to_sym] = value
-			end
-		elsif internal
-			internal << line.sub("\t", "")
-		end
-	}
-	
-	hash[:internal] = internal
-	
-	return hash
-end
-
-def get_doku_path(path)
-	return path.scan(/doc\/(.*)/)[0][0]
-end
-
-def create_readme(doku)
-	path = "../doc/README.md"
-	file = File.open(path, "wb")
-	file.puts "AegiSpindle Documentation"
-	file.puts "========================="
-	file.puts "\n###CORE"
-	
-	doku.select do |e| e[:type] == "core" end.each { |f|
-		path = get_doku_path(f[:docExternal])
-		file.puts "* [#{f[:name]}](#{path}) - #{f[:description]}"
-	}
-	
-	file.puts "\n###ENTRY-SCRIPTS"
-	
-	doku.select do |e| e[:type] == "entry" end.each { |f|
-		path = get_doku_path(f[:docExternal])
-		file.puts "* [#{f[:name]}](#{path}) - #{f[:description]}"
-	}
-	
-	file.puts "\n###MODULES"
-	
-	doku.select do |e| e[:type] == "module" end.each { |f|
-		path = get_doku_path(f[:docExternal])
-		file.puts "* [#{f[:name]}](#{path}) - #{f[:description]}"
-	}
-	
-	file.close()
-end
-
-files, doku = Dir["*.lua"], []
-
-files.each { |lua_file|
-	content = File.read(lua_file)
-	comment = content[5, content.index("]") - 5]
-	
-	doku << create_hash(comment)
-}
-create_readme(doku)
-]]

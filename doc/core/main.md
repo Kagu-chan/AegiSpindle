@@ -10,6 +10,9 @@ AegiSpindle Core
 
 ###Spindle.debug(...)
 Debug function (Wrapper for print(...))
+```lua
+Spindle.debug("Hello ", "World")
+```
 
 ###Spindle.sayHello()
 Welcome Message, print out core version and used lua environment version
@@ -34,42 +37,81 @@ Indicates if AegiSpindle print out DEPRECATED-Messages or not
 
 ###Spindle.initialize(bool printTodo, bool printFixme, bool printDeprecated)
 Initialize Core with given debug flags and generate Wrapper functions
+```lua
+Spindle.initialize()
+Spindle.initialize(true, false, true)
+```
 
 ###Spindle.generateWrapper()
 Iterates all registered modules and call buildWrapper if exists in module
+```lua
+Spindle.generateWrapper() -- Calls the buildWrapper() function in all modules including this function
+```
 
 ###Spindle.initializeAegisub()
 Iterates all registered modules and call initAegisub if exists in module
+```lua
+Spindle.initializeAegisub() -- Calls the initAegisub() function in all modules including this function
+```
 
 ###Spindle.assert(table types, table values[, bool silent_or_nil])
 Check function parameters. Refer function comment for more details
+```lua
+Spindle.assert({"string"}, {"Hello World"})
+Spindle.assert({"string", true}, {"Hello World", 33})
+Spindle.assert({"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
+```
 
 ###Spindle.assertOverrides(...)
 Check function parameters with optional parameter checks. Refer function comment for more details
+```lua
+Spindle.assertOverrides({"string"}, {"string", true}, {"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
+```
 
 ###Spindle.dev
 Development Sub Module
 
 ###Spindle.dev.deeperTrace(int i)
 Overwrite Spindle.library.devTracebackDefault for next dev call
+```lua
+Spindle.dev.deeperTrace(4)
+```
 
 ###Spindle.dev.setDebug(string key, bool state)
 Set print flag for given key to given state
+```lua
+Spindle.dev.setDebug("todo", false)
+```
 
 ###Spindle.dev.disable(...)
 Disable print for given keys
+```lua
+Spindle.dev.disable("todo", "fixme")
+```
 
 ###Spindle.dev.enable(...)
 Enable print for given keys
+```lua
+Spindle.dev.enable("todo", "fixme")
+```
 
 ###Spindle.dev.from()
 Catch traceback function at Spindle.library.devTracebackDefault position for dev message
 
 ###Spindle.dev.todo(string message)
 Print out a TODO-Message is print enabled
+```lua
+Spindle.dev.todo("My TODO Message")
+```
 
 ###Spindle.dev.fixme(string message)
 Print out a FIXME-Message is print enabled
+```lua
+Spindle.dev.fixme("Fixme, im coded as bad as possible!")
+```
 
 ###Spindle.dev.deprecated(string message)
 Print out a DEPRECATED-Message is print enabled
+```lua
+Spindle.dev.deprecated("I'm deprecated since V0.1 and will be removed in V1.0")
+```

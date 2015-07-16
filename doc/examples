@@ -1,0 +1,275 @@
+[Spindle.cache.set(string key, mixed value)]
+Spindle.cache.set("ffi", require("ffi"))
+[Spindle.cache.getOrDefault(string key, mixed default)]
+local ffi = Spindle.cache.getOrDefault("ffi", require("ffi"))
+[Spindle.cache.get(string key)]
+local ffi = Spindle.cache.get("ffi") -- Will internally call Spindle.cache.getOrDefault("ffi", false)
+[Spindle.cache.unset(string key)]
+Spindle.cache.unset("ffi")
+[Spindle.config.set(string key, mixed value)]
+Spindle.config.set("floatingpoint_precision", 3)
+[Spindle.config.setIfEmpty(string key, mixed value)]
+Spindle.config.setIfEmpty("floatingpoint_precision", 3)
+[Spindle.config.get(string key)]
+Spindle.math.round(3.14156, Spindle.config.get("floatingpoint_precision"))
+[Spindle.config.getOrDefault(string key, mixed default)]
+Spindle.math.round(3.14156, Spindle.config.getOrDefault("floatingpoint_precision", 3))
+[Spindle.config.unset(string key)]
+Spindle.config.unset("floatingpoint_precision")
+[Spindle.ffi.user_init]
+Spindle.ffi.user_init = function() Spindle.debug("FFI initialized") end
+[Spindle.ffi.no_windows_callback]
+Spindle.ffi.no_windows_callback = function() Spindle.debug("Add Unix initialization here") end
+[Spindle.ffi.load(...)]
+local advapi = Spindle.ffi.ffi().load("Advapi32")
+[Spindle.ffi.cdef(...)]
+Spindle.ffi.cdef(Spindle.ffi.defines.misc.libpng)
+[Spindle.ffi.ffi()]
+local advapi = Spindle.ffi.ffi().load("Advapi32")
+[Spindle.ffi.advapi()]
+local advapi = Spindle.ffi.advapi() -- Advapi32 must be loaded before
+[Spindle.ffi.libpng()]
+local libpng = Spindle.ffi.libpng() -- libpng must be loaded before
+[Spindle.debug(...)]
+Spindle.debug("Hello ", "World")
+[Spindle.initialize(bool printTodo, bool printFixme, bool printDeprecated)]
+Spindle.initialize()
+Spindle.initialize(true, false, true)
+[Spindle.generateWrapper()]
+Spindle.generateWrapper() -- Calls the buildWrapper() function in all modules including this function
+[Spindle.initializeAegisub()]
+Spindle.initializeAegisub() -- Calls the initAegisub() function in all modules including this function
+[Spindle.assert(table types, table values[, bool silent_or_nil])]
+Spindle.assert({"string"}, {"Hello World"})
+Spindle.assert({"string", true}, {"Hello World", 33})
+Spindle.assert({"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
+[Spindle.assertOverrides(...)]
+Spindle.assertOverrides({"string"}, {"string", true}, {"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
+[Spindle.dev.deeperTrace(int i)]
+Spindle.dev.deeperTrace(4)
+[Spindle.dev.setDebug(string key, bool state)]
+Spindle.dev.setDebug("todo", false)
+[Spindle.dev.disable(...)]
+Spindle.dev.disable("todo", "fixme")
+[Spindle.dev.enable(...)]
+Spindle.dev.enable("todo", "fixme")
+[Spindle.dev.todo(string message)]
+Spindle.dev.todo("My TODO Message")
+[Spindle.dev.fixme(string message)]
+Spindle.dev.fixme("Fixme, im coded as bad as possible!")
+[Spindle.dev.deprecated(string message)]
+Spindle.dev.deprecated("I'm deprecated since V0.1 and will be removed in V1.0")
+[Spindle.math.randomsteps(number min, number max, number step)]
+local value = Spindle.math.randomsteps(1, 11, 2) -- Will result 1, 3, 5, 7, 9 or 11
+[Spindle.math.trim(number x, number min, number max)]
+local infade = Spindle.math.trim(30, 0, 300) -- Will return 30
+local infade = Spindle.math.trim(-23, 0, 300) -- Will return 0
+local infade = Spindle.math.trim(455, 0, 300) -- Will return 300
+[Spindle.math.round(number x[, number dec])]
+local rounded = Spindle.math.round(33.33333) -- Will return 33
+local rounded = Spindle.math.round(33.33333, 3) -- Will return 33.333
+[Spindle.modules.autoLoadRequires]
+Spindle.modules.autoLoadRequires = false -- Will raise an exception is any dependency is not given
+Spindle.modules.autoLoadRequires = true -- Will try to autoload module is any dependency is not given
+[Spindle.modules.trace]
+Spindle.module.trace = true -- Will print all module actions (e.g. module load)
+Spindle.module.trace = false -- Will print only critical messages from modules module (e.g. module not found)
+[Spindle.modules.loaded(string name)]
+if Spindle.modules.loaded("math") then
+	Spindle.debug("Module Math is loaded (:")
+else
+	Spindle.debug("Module Math is not loaded ):")
+end
+[Spindle.modules.load(string name)]
+Spindle.modules.load("ffi")
+[Spindle.modules.require(string name)]
+Spindle.modules.require("ffi") -- Will raise an exception is module is not loaded and Spindle.modules.autoLoadRequires is set to false
+[Spindle.modules.requireAegisub()]
+Spindle.modules.requireAegisub()
+[Spindle.modules.import(table | string target, table | string source)]
+Spindle.modules.import("math", Spindle.math_vectors) -- This function will also merge the buildWrapper() functions is defined in both modules
+[Spindle.modules.printLoadedModules()]
+Spindle.modules.printLoadedModules() -- A list of all loaded modules will be printed out
+[Spindle.oop.generateClass(string name, table properties, table functions, table constructor, ...)]
+Spindle.oop.generateClass("Vector4D", {}, {}, {x = "number", y = "number", z = "number", w = "number"}, "x", "y", "z", "w")
+[rawtype(mixed object)]
+local t = rawtype(Vector2D.new(2, 2)) -- Will result "table"
+[type(midex object)]
+local t = type(Vector2D.new(2, 2)) -- Will result "vector2d", but only if OOP module is loaded!
+[Spindle.table.tostring(table t)]
+Spindle.debug(Spindle.table.tostring({a=1, b=2})) -- Good for debugging (:
+[Spindle.table.removekey(table table, string key)]
+local t = {a = 1, b = 2}
+Spindle.table.removekey(t, "a") -- t.a is nil now
+[Spindle.table.copy(table table[, number depth])]
+local t = {
+	a = 1,
+	b = 2,
+	c = {
+		x = 5,
+		y = 6
+	}
+}
+local ct = Spindle.table.copy(t) -- An exact copy will be returned
+local ct = Spindle.table.copy(t, 1) -- The table will be copied, but no subtables, since there depth = 2 or higher
+[Spindle.text.trim(string s)]
+local s = "     Hello   "
+local ns = Spindle.text.trim(s) -- Will return "Hello"
+[Spindle.text.headtails(string s)]
+local t = "Example I am an example"
+local head, tail = Spindle.text.headtails(t) -- head is "Example", tail is "I am an example"
+[Spindle.text.words(string s)]
+for w in Spindle.text.words("Hello World, how are you?") do
+	Spindle.debug(w)
+end
+[Spindle.text.wordtable(string s)]
+local words_table = Spindle.text.wordtable("Hello World, how are you?")
+[Spindle.text.len(string s)]
+local len = Spindle.text.len("Hello World, how are you?")
+[Spindle.type.isnil(mixed x)]
+if Spindle.type.isnil(value) then ... end
+[Spindle.type.isbool(mixed x)]
+if Spindle.type.isbool(value) then ... end
+[Spindle.type.isboolean(mixed x)]
+if Spindle.type.isboolean(value) then ... end
+[Spindle.type.isnum(mixed x)]
+if Spindle.type.isnum(value) then ... end
+[Spindle.type.isnumber(mixed x)]
+if Spindle.type.isnumber(value) then ... end
+[Spindle.type.isint(mixed x)]
+if Spindle.type.isint(value) then ... end
+[Spindle.type.isinteger(mixed x)]
+if Spindle.type.isinteger(value) then ... end
+[Spindle.type.isstring(mixed x)]
+if Spindle.type.isstring(value) then ... end
+[Spindle.type.istext(mixed x)]
+if Spindle.type.istext(value) then ... end
+[Spindle.type.istable(mixed x)]
+if Spindle.type.istable(value) then ... end
+[Spindle.type.isfunc(mixed x)]
+if Spindle.type.isfunc(value) then ... end
+[Spindle.type.isfunction(mixed x)]
+if Spindle.type.isfunction(value) then ... end
+[Spindle.type.ispure(mixed x)]
+if Spindle.type.ispure(value) then ... end
+[Spindle.type.isthread(mixed x)]
+if Spindle.type.isthread(value) then ... end
+[Spindle.type.isudata(mixed x)]
+if Spindle.type.isudata(value) then ... end
+[Spindle.type.isuserdata(mixed x)]
+if Spindle.type.isuserdata(value) then ... end
+[Spindle.type.iscdata(mixed x)]
+if Spindle.type.iscdata(value) then ... end
+[Spindle.type.issame(mixed x, mixed y)]
+if Spindle.type.issame("x", "x") then ... end -- TRUE
+if Spindle.type.issame("x", "y") then ... end -- FALSE
+[Spindle.type.default(mixed x, mixed default)]
+local text = Spindle.type.default(loaded_text, "No text loaded before")
+[Spindle.type.isarray(mixed x)]
+if Spindle.type.isarray(value) then ... end
+[Spindle.utf8.charrange(string s, int i)]
+local charrange = Spindle.utf8.charrange("$")
+[Spindle.utf8.chars(string s)]
+for c in Spindle.utf8.chars("Hello") do
+	Spindle.debug(c)
+end
+[Spindle.utf8.chartable(string s)]
+local char_table = Spindle.utf8.chartable("Hello")
+[Spindle.utf8.len(string s)]
+local len = Spindle.utf8.len("Hello")
+[Spindle.utf8.bton(string s)]
+local n = Spindle.utf8.bton(_binary_data_string_)
+[Spindle.utf8.utf8_to_utf16(string s)]
+local dir_handle = Spindle.ffi.ffi().gc(Spindle.ffi.ffi().C.FindFirstFileW(Spindle.utf8.utf8_to_utf16(dir_name.."\\*"), find_data), Spindle.ffi.ffi().C.FindClose) -- This example is taken from the create_dokumentation-script
+[Spindle.utf8.utf16_to_utf8(string s)]
+local name = Spindle.utf8.utf16_to_utf8(find_data[0].cFileName) -- This example is taken from the create_dokumentation-script
+[Vector2D.new(int x, int y)]
+local vector = Vector2D.new(2, 3)
+[Vector2D.fromtable(table t)]
+local vector = Vector2D.fromtable({x=1, y=2})
+[Vector2D:x([int x])]
+local vector = Vector2D.new(2, 3)
+vector:x(5)
+vector:x() -- 5
+[Vector2D:y([int y])]
+local vector = Vector2D.new(2, 3)
+vector:y(5)
+vector:y() -- 5
+[Vector2D:totable()]
+local vector = Vector2D.new(2, 3)
+vector:totable() -- {x = 2, y = 3}
+[Vector2D:distance()]
+local vector = Vector2D.new(2, 3)
+vector:distance() -- 3.60555
+[Vector2D:to3d()]
+local vector = Vector2D.new(2, 3)
+vector:to3d() -- {x = 2, y = 3, z = 0}
+[Vector2D:to4d()]
+local vector = Vector2D.new(2, 3)
+vector:to4d() -- {x = 2, y = 3, z = 0, w = 1}
+[Vector3D.new(int x, int y, int z)]
+local vector = Vector3D.new(2, 3, 4)
+[Vector3D.fromtable(table t)]
+local vector = Vector3D.fromtable({x=1, y=2, z=3})
+[Vector3D:x([int x])]
+local vector = Vector3D.new(2, 3, 4)
+vector:x(5)
+vector:x() -- 5
+[Vector3D:y([int y])]
+local vector = Vector3D.new(2, 3, 4)
+vector:y(5)
+vector:y() -- 5
+[Vector3D:z([int z])]
+local vector = Vector3D.new(2, 3, 4)
+vector:z(5)
+vector:z() -- 5
+[Vector3D:totable()]
+local vector = Vector3D.new(2, 3, 4)
+vector:totable() -- {x = 2, y = 3, z = 4}
+[Vector3D:distance()]
+local vector = Vector3D.new(2, 3, 4)
+vector:distance() -- 5.385
+[Vector3D:to2d()]
+local vector = Vector3D.new(2, 3, 4)
+vector:to2d() -- {x = 2, y = 3}
+[Vector3D:to4d()]
+vector:to4d() -- {x = 2, y = 3, z = 4, w = 1}
+local vector = Vector3D.new(2, 3, 4)
+[Vector4D.new(int x, int y, int z, int w)]
+local vector = Vector4D.new(2, 3, 4, 5)
+[Vector4D.fromtable(table t)]
+local vector = Vector4D.fromtable({x=1, y=2, z=3, w=4})
+[Vector4D:x([int x])]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:x(5)
+vector:x() -- 5
+[Vector4D:y([int y])]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:y(5)
+vector:y() -- 5
+[Vector4D:z([int z])]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:z(5)
+vector:z() -- 5
+[Vector4D:w([int w])]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:w(5)
+vector:w() -- 5
+[Vector4D:totable()]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:totable() -- {x = 2, y = 3, z = 4, w = 5}
+[Vector4D:distance()]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:distance() -- 7.348
+[Vector4D:to2d()]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:to2d() => {x = 0.4, y = 0.6}
+[Vector4D:to3d()]
+vector:to3d() => {x = 0.4, y = 0.6, z = 0.8}
+local vector = Vector4D.new(2, 3, 4, 5)
+[Spindle.type.isvector2d(mixed object)]
+if Spindle.type.isvector2d(value) then ... end
+[Spindle.type.isvector3d(mixed object)]
+if Spindle.type.isvector3d(value) then ... end
+[Spindle.type.isvector4d(mixed object)]
+if Spindle.type.isvector4d(value) then ... end

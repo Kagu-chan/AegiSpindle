@@ -11,6 +11,9 @@ Module for pseudo OOP support
 
 ###Spindle.oop.generateClass(string name, table properties, table functions, table constructor, ...)
 Generate a class construct named by name, with given properties and functions. constructor contains name - type relation for constructor parameters, tupel parameter the order of constructor variables
+```lua
+Spindle.oop.generateClass("Vector4D", {}, {}, {x = "number", y = "number", z = "number", w = "number"}, "x", "y", "z", "w")
+```
 
 ###Spindle.oop.addMetaFunctions(table meta, table order)
 Add meta functions to meta table
@@ -32,6 +35,12 @@ Returns a table containing property to type relations
 
 ###rawtype(mixed object)
 type() function
+```lua
+local t = rawtype(Vector2D.new(2, 2)) -- Will result "table"
+```
 
 ###type(midex object)
 type() function extended by meta table type getter
+```lua
+local t = type(Vector2D.new(2, 2)) -- Will result "vector2d", but only if OOP module is loaded!
+```
