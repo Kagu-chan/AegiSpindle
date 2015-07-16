@@ -1,5 +1,6 @@
 --[[
 name:FFI
+fullname:Spindle.FFI
 description:FFI module for C-Library-Calls
 extends:
 depends:Config,Cache
@@ -8,7 +9,6 @@ version:1.0
 type:module
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/ffi.md
 docInternal:
-	Spindle.ffi FFI module for C-Library-Calls
 	Spindle.ffi.user_init Optional Callback for initialization extension
 	Spindle.ffi.no_windows_callback Optional Callback for non windows initialization
 	Spindle.ffi.initialize() FFI initialization function

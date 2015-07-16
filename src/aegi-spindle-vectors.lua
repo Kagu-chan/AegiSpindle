@@ -1,5 +1,6 @@
 --[[
 name:Vectors
+fullname:Spindle.Vectors
 description:Vector Classes Module
 extends:
 depends:OOP

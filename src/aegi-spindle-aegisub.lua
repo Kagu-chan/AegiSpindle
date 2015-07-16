@@ -1,5 +1,6 @@
 --[[
 name:Aegisub
+fullname:Spindle.Aegisub
 description:Aegisub Main Module (Entry Script)
 extends:
 depends:Loader

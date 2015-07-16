@@ -1,5 +1,6 @@
 --[[
 name:Main
+fullname:Spindle.Main
 description:AegiSpindle Core
 extends:
 depends:
@@ -8,7 +9,6 @@ version:1.0
 type:core
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/core/main.md
 docInternal:
-	Spindle AegiSpindle Core
 	Spindle.debug(...) Debug function (Wrapper for print(...))
 	Spindle.sayHello() Welcome Message, print out core version and used lua environment version
 	Spindle.library Internal Core Cache Table

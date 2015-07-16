@@ -1,5 +1,6 @@
 --[[
 name:Type
+fullname:Spindle.Type
 description:Type utilities
 extends:
 depends:
@@ -8,7 +9,6 @@ version:1.0
 type:module
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/type.md
 docInternal:
-	Spindle.type Type utilities
 	Spindle.type.isnil(mixed x) Returns is x is a nil type
 	Spindle.type.isbool(mixed x) Returns is x is a boolean type
 	Spindle.type.isboolean(mixed x) Returns is x is a boolean type

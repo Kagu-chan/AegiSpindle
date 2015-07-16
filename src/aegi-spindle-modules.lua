@@ -1,5 +1,6 @@
 --[[
 name:Modules
+fullname:Spindle.Modules
 description:Module support module.
 extends:
 depends:
@@ -8,7 +9,6 @@ version:1.0
 type:loader
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/core/modules.md
 docInternal:
-	Spindle.modules Module support module
 	Spindle.modules.autoLoadRequires Indicates is this module autoload required modules or raise an exception is not loaded
 	Spindle.modules.trace Indicates the trace level. TRUE will print all mdoule actions, FALSE only critical messages
 	Spindle.modules.modules Table with loaded module names

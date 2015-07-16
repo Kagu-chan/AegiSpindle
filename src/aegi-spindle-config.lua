@@ -1,5 +1,6 @@
 --[[
 name:Config
+fullname:Spindle.Config
 description:Config cache for AegiSpindle
 extends:
 depends:
@@ -8,7 +9,6 @@ version:1.0
 type:module
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/config.md
 docInternal:
-	Spindle.config Module for caching
 	Spindle.config.keyValues Table with cached config values (config collection)
 	Spindle.config.set(string key, mixed value) Cache the given value with given key
 	Spindle.config.setIfEmpty(string key, mixed value) Sets a config value if not setted

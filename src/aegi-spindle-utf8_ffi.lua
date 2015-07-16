@@ -1,5 +1,6 @@
 --[[
 name:UTF8-FFI
+fullname:Spindle.UTF8.FFI
 description:UTFS8 ffi extension module
 extends:UTF8
 depends:UTF8,FFI

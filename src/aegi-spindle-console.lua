@@ -1,5 +1,6 @@
 --[[
 name:Console
+fullname:Spindle.Console
 description:Console Main Module (Entry Script)
 extends:
 depends:Loader

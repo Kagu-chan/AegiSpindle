@@ -1,5 +1,6 @@
 --[[
 name:Math-Vectors
+fullname:Spindle.Math.Vectors
 description:Math-Vectors module
 extends:Math
 depends:Math,Vectors
@@ -8,7 +9,6 @@ version:1.0
 type:module
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/math-vectors.md
 docInternal:
-	Spindle.math Math module
 	Spindle.math.buildWrapper() Wrapper function for core application
 ]]
 

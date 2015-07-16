@@ -1,5 +1,6 @@
 --[[
 name:Cache
+fullname:Spindle.Cache
 description:Value cache for AegiSpindle
 extends:
 depends:
@@ -8,7 +9,6 @@ version:1.0
 type:module
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/cache.md
 docInternal:
-	Spindle.cache Module for caching
 	Spindle.cache.keyValues Table with cached variables (cache collection)
 	Spindle.cache.set(string key, mixed value) Cache the given value with given key
 	Spindle.cache.getOrDefault(string key, mixed default) Returns saved value key or default is not set

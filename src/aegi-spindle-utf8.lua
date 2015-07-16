@@ -1,5 +1,6 @@
 --[[
 name:UTF8
+fullname:Spindle.UTF8
 description:UTF8 Text Module
 extends:
 depends:
@@ -8,7 +9,6 @@ version:1.0
 type:module
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/utf8.md
 docInternal:
-	Spindle.utf8 UTF8 Text Module
 	Spindle.utf8.charrange(string s, int i) Returns bytes charrange
 	Spindle.utf8.chars(string s) Iterator function through texts characters
 	Spindle.utf8.chartable(string s) Returns a table of texts characters

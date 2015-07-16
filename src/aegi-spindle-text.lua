@@ -1,5 +1,6 @@
 --[[
 name:Text
+fullname:Spindle.Text
 description:Text- and String-Functions
 extends:
 depends:
@@ -8,7 +9,6 @@ version:1.0
 type:module
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/text.md
 docInternal:
-	Spindle.text Text- and String-Functions
 	Spindle.text.trim(string s) Remove leading and following white spaces from s
 	Spindle.text.headtails(string s) Returns first word and following text seperately from text
 	Spindle.text.words(string s) Iterator function for texts words

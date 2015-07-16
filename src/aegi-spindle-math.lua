@@ -1,5 +1,6 @@
 --[[
 name:Math
+fullname:Spindle.Math
 description:Math module
 extends:
 depends:
@@ -8,7 +9,6 @@ version:1.0
 type:module
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/math.md
 docInternal:
-	Spindle.math Math module
 	Spindle.math.randomsteps(number min, number max, number step) Returns a random value between min and max, but in given steps
 	Spindle.math.trim(number x, number min, number max) Trims a number value to be not lesser then min and not greater then max
 	Spindle.math.round(number x[, number dec]) Rounds a number to integer numbers or given decimal points if dec is given
