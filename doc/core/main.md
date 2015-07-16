@@ -6,6 +6,8 @@ AegiSpindle Core
 * Version: 1.0
 * Author: Kagu-chan
 
+> Core Module of AegiSpindle. In this Module all sub modules will be stored except pseudo classes.
+
 ###Spindle.debug(...)
 Debug function (Wrapper for print(...))
 

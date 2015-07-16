@@ -8,6 +8,8 @@ UTFS8 ffi extension module
 * Extends: [UTF8](../modules/utf8.md)
 * Depends on: [UTF8](../modules/utf8.md), [FFI](../modules/ffi.md)
 
+> This module extends the Spindle.UTF8 module by C-Functions.
+
 ###Spindle.utf8.utf8_to_utf16(string s)
 Returns utf16 representation of utf8 string
 

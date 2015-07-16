@@ -7,6 +7,8 @@ FFI module for C-Library-Calls
 * Author: Kagu-chan
 * Depends on: [Config](../modules/config.md), [Cache](../modules/cache.md)
 
+> This Module provides the FFI library and some short cuts. Also it provides the Advapi32.dll and libpng.dll
+
 ###Spindle.ffi.user_init
 Optional Callback for initialization extension
 

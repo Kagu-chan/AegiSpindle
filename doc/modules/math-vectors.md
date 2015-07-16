@@ -8,5 +8,7 @@ Math-Vectors module
 * Extends: [Math](../modules/math.md)
 * Depends on: [Math](../modules/math.md), [Vectors](../modules/vectors.md)
 
+> This module extends the Spindle.Math module by vector mathematics.
+
 ###Spindle.math.buildWrapper()
 Wrapper function for core application

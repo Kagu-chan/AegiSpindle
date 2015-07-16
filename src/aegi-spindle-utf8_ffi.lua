@@ -2,6 +2,7 @@
 name:UTF8-FFI
 fullname:Spindle.UTF8.FFI
 description:UTFS8 ffi extension module
+fulldescription:This module extends the Spindle.UTF8 module by C-Functions.
 extends:UTF8
 depends:UTF8,FFI
 author:Kagu-chan

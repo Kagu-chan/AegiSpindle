@@ -2,6 +2,7 @@
 name:Main
 fullname:Spindle.Main
 description:AegiSpindle Core
+fulldescription:Core Module of AegiSpindle. In this Module all sub modules will be stored except pseudo classes.
 extends:
 depends:
 author:Kagu-chan

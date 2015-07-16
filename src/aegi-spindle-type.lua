@@ -2,6 +2,7 @@
 name:Type
 fullname:Spindle.Type
 description:Type utilities
+fulldescription:This module provides many type check functions and some additional functionality.
 extends:
 depends:
 author:Kagu-chan

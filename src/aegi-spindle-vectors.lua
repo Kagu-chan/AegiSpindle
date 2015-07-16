@@ -2,6 +2,7 @@
 name:Vectors
 fullname:Spindle.Vectors
 description:Vector Classes Module
+fulldescription:This module will generate the Vector classes for working with shapes and similar tasks.
 extends:
 depends:OOP
 author:Kagu-chan
@@ -23,7 +24,7 @@ docInternal:
 	Vector3D.fromtable(table t) Creates instance from given table
 	Vector3D:x([int x]) Sets or gets x value of instance
 	Vector3D:y([int y]) Sets or gets y value of instance
-	Vector3D:y([int z]) Sets or gets z value of instance
+	Vector3D:z([int z]) Sets or gets z value of instance
 	Vector3D:totable() Returns table representation of instance
 	Vector3D:distance() Returns distance length of instance
 	Vector3D:to2d() Parse instance to Vector2D
@@ -33,8 +34,8 @@ docInternal:
 	Vector4D.fromtable(table t) Creates instance from given table
 	Vector4D:x([int x]) Sets or gets x value of instance
 	Vector4D:y([int y]) Sets or gets y value of instance
-	Vector4D:y([int z]) Sets or gets z value of instance
-	Vector4D:y([int w]) Sets or gets w value of instance
+	Vector4D:z([int z]) Sets or gets z value of instance
+	Vector4D:w([int w]) Sets or gets w value of instance
 	Vector4D:totable() Returns table representation of instance
 	Vector4D:distance() Returns distance length of instance
 	Vector4D:to2d() Parse instance to Vector2D

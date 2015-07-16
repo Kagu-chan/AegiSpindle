@@ -2,6 +2,7 @@
 name:Config
 fullname:Spindle.Config
 description:Config cache for AegiSpindle
+fulldescription:This Module provides a configurator for the library.
 extends:
 depends:
 author:Kagu-chan

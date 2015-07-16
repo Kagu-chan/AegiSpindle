@@ -2,6 +2,7 @@
 name:FFI
 fullname:Spindle.FFI
 description:FFI module for C-Library-Calls
+fulldescription:This Module provides the FFI library and some short cuts. Also it provides the Advapi32.dll and libpng.dll
 extends:
 depends:Config,Cache
 author:Kagu-chan
@@ -38,7 +39,7 @@ Spindle.ffi = {
 				Spindle.cache.set("advapi", Spindle.ffi.ffi().load("Advapi32"))
 				Spindle.ffi.cdef(Spindle.ffi.defines.windows.advapi)
 			else
-				if and type(Spindle.ffi.no_windows_callback) == "function" then
+				if type(Spindle.ffi.no_windows_callback) == "function" then
 					Spindle.ffi.no_windows_callback()
 				else
 					Spindle.debug("Non-Windows-Systems not supported yet!")

@@ -6,6 +6,8 @@ Config cache for AegiSpindle
 * Version: 1.0
 * Author: Kagu-chan
 
+> This Module provides a configurator for the library.
+
 ###Spindle.config.keyValues
 Table with cached config values (config collection)
 

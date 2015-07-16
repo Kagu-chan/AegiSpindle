@@ -2,6 +2,7 @@
 name:Math-Vectors
 fullname:Spindle.Math.Vectors
 description:Math-Vectors module
+fulldescription:This module extends the Spindle.Math module by vector mathematics.
 extends:Math
 depends:Math,Vectors
 author:Kagu-chan

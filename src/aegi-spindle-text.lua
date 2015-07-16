@@ -2,6 +2,7 @@
 name:Text
 fullname:Spindle.Text
 description:Text- and String-Functions
+fulldescription:This module provides some functions for working with texts.
 extends:
 depends:
 author:Kagu-chan

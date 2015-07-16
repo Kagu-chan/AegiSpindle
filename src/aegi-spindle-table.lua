@@ -2,6 +2,7 @@
 name:Table
 fullname:Spindle.Table
 description:Module for table functions
+fulldescription:This module provides some functions for working with tables.
 extends:
 depends:
 author:Kagu-chan

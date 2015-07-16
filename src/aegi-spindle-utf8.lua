@@ -2,6 +2,7 @@
 name:UTF8
 fullname:Spindle.UTF8
 description:UTF8 Text Module
+fulldescription:This module provides some functions for working with binary data or characters.
 extends:
 depends:
 author:Kagu-chan

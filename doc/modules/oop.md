@@ -7,6 +7,8 @@ Module for pseudo OOP support
 * Author: Kagu-chan
 * Depends on: [Table](../modules/table.md)
 
+> This module provides pseudo class generation for OOP style code.
+
 ###Spindle.oop.generateClass(string name, table properties, table functions, table constructor, ...)
 Generate a class construct named by name, with given properties and functions. constructor contains name - type relation for constructor parameters, tupel parameter the order of constructor variables
 

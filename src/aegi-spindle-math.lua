@@ -2,6 +2,7 @@
 name:Math
 fullname:Spindle.Math
 description:Math module
+fulldescription:This module provides various math functions.
 extends:
 depends:
 author:Kagu-chan

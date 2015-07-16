@@ -6,6 +6,8 @@ Type utilities
 * Version: 1.0
 * Author: Kagu-chan
 
+> This module provides many type check functions and some additional functionality.
+
 ###Spindle.type.isnil(mixed x)
 Returns is x is a nil type
 

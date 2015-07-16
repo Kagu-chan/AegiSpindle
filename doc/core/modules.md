@@ -6,11 +6,13 @@ Module support module.
 * Version: 1.0
 * Author: Kagu-chan
 
+> This Core Module will load the core application and load or merge all other modules.
+
 ###Spindle.modules.autoLoadRequires
 Indicates is this module autoload required modules or raise an exception is not loaded
 
 ###Spindle.modules.trace
-Indicates the trace level. TRUE will print all mdoule actions, FALSE only critical messages
+Indicates the trace level. TRUE will print all module actions, FALSE only critical messages
 
 ###Spindle.modules.modules
 Table with loaded module names

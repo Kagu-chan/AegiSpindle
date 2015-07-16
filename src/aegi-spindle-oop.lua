@@ -2,6 +2,7 @@
 name:OOP
 fullname:Spindle.OOP
 description:Module for pseudo OOP support
+fulldescription:This module provides pseudo class generation for OOP style code.
 extends:
 depends:Table
 author:Kagu-chan

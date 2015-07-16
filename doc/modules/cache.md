@@ -6,6 +6,8 @@ Value cache for AegiSpindle
 * Version: 1.0
 * Author: Kagu-chan
 
+> This module provides various caching functions to store variables in global context without using the global context itself.
+
 ###Spindle.cache.keyValues
 Table with cached variables (cache collection)
 

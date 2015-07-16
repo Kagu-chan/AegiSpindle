@@ -109,7 +109,7 @@ local function create_docs(base_path, file_pattern)
 	end
 	local function get_docs_table(content)
 		local function filter(key)
-			local pos = content:find(key, 1, true) or false
+			local pos = content:find(key .. ":", 1, true) or false
 			if not pos then return "" end
 			local line_start = content:sub(pos)
 			local end_pos = line_start:find("\n")
@@ -128,6 +128,7 @@ local function create_docs(base_path, file_pattern)
 			name = filter("name"),
 			fullname = filter("fullname"),
 			description = filter("description"),
+			fulldescription = filter("fulldescription"),
 			extends = filter("extends"),
 			depends = filter("depends"),
 			author = filter("author"),
@@ -220,7 +221,7 @@ local function create_docs(base_path, file_pattern)
 		local extends = get_references(doc.extends)
 		local depends = get_references(doc.depends)
 		
-		f:write(("%s\n%s\n%s\n\n* Shortname: %s\n* Version: %s\n* Author: %s\n%s%s"):format(
+		f:write(("%s\n%s\n%s\n\n* Shortname: %s\n* Version: %s\n* Author: %s\n%s%s\n> %s\n"):format(
 			doc.fullname, 
 			get_underline(doc.fullname), 
 			doc.description,
@@ -228,7 +229,8 @@ local function create_docs(base_path, file_pattern)
 			doc.version,
 			doc.author,
 			extends and ("* Extends: %s\n"):format(extends) or "",
-			depends and ("* Depends on: %s\n"):format(depends) or ""
+			depends and ("* Depends on: %s\n"):format(depends) or "",
+			doc.fulldescription
 		))
 		if #doc.docInternal == 1 and doc.docInternal[1] == "" then
 			f:write("\n***No function or property documentation for this script!***\n")

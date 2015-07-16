@@ -6,6 +6,8 @@ Math module
 * Version: 1.0
 * Author: Kagu-chan
 
+> This module provides various math functions.
+
 ###Spindle.math.randomsteps(number min, number max, number step)
 Returns a random value between min and max, but in given steps
 

@@ -2,6 +2,7 @@
 name:Console
 fullname:Spindle.Console
 description:Console Main Module (Entry Script)
+fulldescription:This script is used for usage as console script.
 extends:
 depends:Loader
 author:Kagu-chan

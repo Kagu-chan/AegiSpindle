@@ -7,6 +7,8 @@ Vector Classes Module
 * Author: Kagu-chan
 * Depends on: [OOP](../modules/oop.md)
 
+> This module will generate the Vector classes for working with shapes and similar tasks.
+
 ###Vector2D
 Vector2D Object
 
@@ -49,7 +51,7 @@ Sets or gets x value of instance
 ###Vector3D:y([int y])
 Sets or gets y value of instance
 
-###Vector3D:y([int z])
+###Vector3D:z([int z])
 Sets or gets z value of instance
 
 ###Vector3D:totable()
@@ -79,10 +81,10 @@ Sets or gets x value of instance
 ###Vector4D:y([int y])
 Sets or gets y value of instance
 
-###Vector4D:y([int z])
+###Vector4D:z([int z])
 Sets or gets z value of instance
 
-###Vector4D:y([int w])
+###Vector4D:w([int w])
 Sets or gets w value of instance
 
 ###Vector4D:totable()

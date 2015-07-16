@@ -6,6 +6,8 @@ Text- and String-Functions
 * Version: 1.0
 * Author: Kagu-chan
 
+> This module provides some functions for working with texts.
+
 ###Spindle.text.trim(string s)
 Remove leading and following white spaces from s
 

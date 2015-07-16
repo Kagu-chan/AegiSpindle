@@ -6,6 +6,8 @@ Module for table functions
 * Version: 1.0
 * Author: Kagu-chan
 
+> This module provides some functions for working with tables.
+
 ###Spindle.table.tostring(table t)
 Returns tables string representation
 

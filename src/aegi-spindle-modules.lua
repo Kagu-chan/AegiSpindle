@@ -2,6 +2,7 @@
 name:Modules
 fullname:Spindle.Modules
 description:Module support module.
+fulldescription:This Core Module will load the core application and load or merge all other modules.
 extends:
 depends:
 author:Kagu-chan
@@ -10,7 +11,7 @@ type:loader
 docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/core/modules.md
 docInternal:
 	Spindle.modules.autoLoadRequires Indicates is this module autoload required modules or raise an exception is not loaded
-	Spindle.modules.trace Indicates the trace level. TRUE will print all mdoule actions, FALSE only critical messages
+	Spindle.modules.trace Indicates the trace level. TRUE will print all module actions, FALSE only critical messages
 	Spindle.modules.modules Table with loaded module names
 	Spindle.modules.modules.add(string name) Mark a module as loaded
 	Spindle.modules.loaded(string name) Returns if a module is loaded or not

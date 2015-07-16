@@ -2,6 +2,7 @@
 name:Aegisub
 fullname:Spindle.Aegisub
 description:Aegisub Main Module (Entry Script)
+fulldescription:This script is used for Aegisub as entry script.
 extends:
 depends:Loader
 author:Kagu-chan

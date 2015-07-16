@@ -2,6 +2,7 @@
 name:Cache
 fullname:Spindle.Cache
 description:Value cache for AegiSpindle
+fulldescription:This module provides various caching functions to store variables in global context without using the global context itself.
 extends:
 depends:
 author:Kagu-chan

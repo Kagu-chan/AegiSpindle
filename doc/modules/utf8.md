@@ -6,6 +6,8 @@ UTF8 Text Module
 * Version: 1.0
 * Author: Kagu-chan
 
+> This module provides some functions for working with binary data or characters.
+
 ###Spindle.utf8.charrange(string s, int i)
 Returns bytes charrange
 
