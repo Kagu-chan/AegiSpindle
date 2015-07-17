@@ -71,23 +71,6 @@ local function read_dir(dir_name)
 	return files
 end
 
-table.tostring = function(t)
-	local result, result_n = {}, 0
-	local function convert_recursive(t, space)
-		for key, value in pairs(t) do
-			if type(key) == "string" then key = string.format("%q", key) end
-			if type(value) == "string" then value = string.format("%q", value) end
-			result_n = result_n + 1
-			result[result_n] = string.format("%s[%s] = %s", space, key, tostring(value))
-			if type(value) == "table" then
-				convert_recursive(value, space .. "\t")
-			end
-		end
-	end
-	convert_recursive(t, "")
-	return table.concat(result, "\n")
-end
-
 local function create_docs(base_path, file_pattern)
 	local fcount = 0
 	local ecount = 0
@@ -270,12 +253,14 @@ local function create_docs(base_path, file_pattern)
 	print(("Create documentation for %d files..."):format(#files))
 	for i=1, #files do
 		local file = files[i]
+		if not file:find(file_pattern, 1, true) then goto continue end
 		local content = get_important_content_from_file(file)
 		local docs_table = get_docs_table(content)
 		docs_table["docs_path"] = extract_dokumentation_path(docs_table.docExternal)
 		docs[#docs+1] = docs_table
 		
 		write_doc(docs_table)
+		::continue::
 	end
 	write_readme(docs)
 	print("Created documentation for " .. fcount .. " functions or properties and found " .. ecount .. " examples")
