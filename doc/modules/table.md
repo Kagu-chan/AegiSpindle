@@ -36,5 +36,14 @@ local ct = Spindle.table.copy(t) -- An exact copy will be returned
 local ct = Spindle.table.copy(t, 1) -- The table will be copied, but no subtables, since there depth = 2 or higher
 ```
 
+###Spindle.table.select(table table, function callback)
+Returns a table only containing elements where callback returns true for
+```lua
+local new_table = Spindle.table.select(t, function(e, i) return type(e) == "number" end)
+```
+
+###Spindle.table.map(table table, function callback)
+Applies the callback for each element in table
+
 ###Spindle.table.buildWrapper()
 Wrapper function for core application
