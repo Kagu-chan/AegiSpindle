@@ -44,6 +44,9 @@ local new_table = Spindle.table.select(t, function(e, i) return type(e) == "numb
 
 ###Spindle.table.map(table table, function callback)
 Applies the callback for each element in table
+```lua
+Spindle.table.map(t, function(e) return tostring(e) end)
+```
 
 ###Spindle.table.buildWrapper()
 Wrapper function for core application

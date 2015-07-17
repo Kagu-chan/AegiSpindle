@@ -114,7 +114,7 @@ local ct = Spindle.table.copy(t) -- An exact copy will be returned
 local ct = Spindle.table.copy(t, 1) -- The table will be copied, but no subtables, since there depth = 2 or higher
 [Spindle.table.select(table table, function callback)]
 local new_table = Spindle.table.select(t, function(e, i) return type(e) == "number" end)
-[Spindle.table.map(table table, function callback) Applies the callback for each element in table]
+[Spindle.table.map(table table, function callback)]
 Spindle.table.map(t, function(e) return tostring(e) end)
 [Spindle.text.trim(string s)]
 local s = "     Hello   "
