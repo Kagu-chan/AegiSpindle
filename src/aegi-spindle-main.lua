@@ -35,7 +35,7 @@ docInternal:
 ]]
 
 -- Set global functions and objects to local cache for performance
-local Spindle = _G.Spindle or {}
+local Spindle
 local print, _VERSION, type, pairs, ipairs, table, error, string, debug = _G.print, _G._VERSION, _G.type, _G.pairs, _G.ipairs, _G.table, _G.error, _G.string, _G.debug
 
 Spindle = {
