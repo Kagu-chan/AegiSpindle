@@ -53,9 +53,9 @@ Spindle = {
 		devPrintDeprecated = true,
 	},
 	initialize = function(printTodo, printFixme, printDeprecated)
-		printTodo = (printTodo or printTodo == nil)-- and true or false
-		printFixme = (printFixme or printFixme == nil)-- and true or false
-		printDeprecated = (printDeprecated or printDeprecated == nil)-- and true or false
+		printTodo = (printTodo or printTodo == nil)
+		printFixme = (printFixme or printFixme == nil)
+		printDeprecated = (printDeprecated or printDeprecated == nil)
 		Spindle.assert({"boolean", "boolean", "boolean"}, {printTodo, printFixme, printDeprecated})
 		Spindle.dev.setDebug("todo", printTodo)
 		Spindle.dev.setDebug("fixme", printFixme)
