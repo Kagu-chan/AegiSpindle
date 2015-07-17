@@ -13,6 +13,8 @@ docInternal:
 	Spindle.table.tostring(table t) Returns tables string representation
 	Spindle.table.removekey(table table, string key) Remove a key from a table
 	Spindle.table.copy(table table[, number depth]) Returns a copy of a table. Full copy if depth is not given
+	Spindle.table.select(table table, function callback) Returns a table only containing elements where callback returns true for
+	Spindle.table.map(table table, function callback) Applies the callback for each element in table
 	Spindle.table.buildWrapper() Wrapper function for core application
 ]]
 
@@ -64,6 +66,21 @@ Spindle.table = {
 			return new_t
 		end
 		return depth and copy_recursive_n(t, depth) or copy_recursive(t)
+	end,
+	select = function(t, callback)
+		Spindle.assert({"table", "function"}, {t, callback})
+		local result = {}
+		for i, e in pairs(t) do
+			if callback(e, i) then result[i] = e end
+		end
+		return result
+	end,
+	map = function(t, callback)
+		Spindle.assert({"table", "function"}, {t, callback})
+		local result = {}
+		for i, e in pairs(t) do
+			t[i] = callback(e, i)
+		end
 	end,
 	buildWrapper = function()
 		Spindle.dev.todo("Write wrapper")
