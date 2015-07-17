@@ -17,6 +17,9 @@ docInternal:
 	Spindle.cache.unset(string key) Remove a given key from cache collection
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+
 Spindle.cache = {
 	keyValues = {},
 	set = function(key, value)

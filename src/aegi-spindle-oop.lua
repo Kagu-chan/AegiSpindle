@@ -21,6 +21,10 @@ docInternal:
 	type(midex object) type() function extended by meta table type getter
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+local type, error, pairs, ipairs, unpack, setmetatable = _G.type, _G.error, _G.pairs, _G.ipairs, _G.unpack, _G.setmetatable
+
 Spindle.modules.require("table")
 
 Spindle.oop = {
@@ -39,7 +43,7 @@ Spindle.oop = {
 	addMetaFunctions = function(meta, order)
 		meta.__index = meta
 		meta.__newindex = function(object, key, value)
-			if object[key] and type(object[key]) == "function" and object["_" .. key] then
+			if type(object[key]) == "function" and object["_" .. key] then
 				object[key](object, value)
 			else
 				error("Not allowed to set or overwrite property definitions!", 2)
@@ -109,7 +113,7 @@ Spindle.oop = {
 	end,
 }
 
-rawtype = type
-type = function(obj)
+_G.rawtype = type
+_G.type = function(obj)
 	return obj and rawtype(obj) == "table" and obj.type and rawtype(obj.type) == "function" and obj:type() or rawtype(obj)
  end

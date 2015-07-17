@@ -16,6 +16,10 @@ docInternal:
 	Spindle.table.buildWrapper() Wrapper function for core application
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+local table, pairs, type = _G.table, _G.pairs, _G.type
+
 Spindle.table = {
 	tostring = function(t)
 		Spindle.assert({"table"}, {t})
@@ -34,12 +38,12 @@ Spindle.table = {
 		convert_recursive(t, "")
 		return table.concat(result, "\n")
 	end,
-	removekey = function(table, key)
-		Spindle.assert({"table", true}, {table, key})
-		if type(table) ~= "table" then return nil end
-		if table[key] == nil then return nil end
-		local e = table[key]
-		table[key] = nil
+	removekey = function(t, key)
+		Spindle.assert({"table", true}, {t, key})
+		if type(t) ~= "table" then return nil end
+		if t[key] == nil then return nil end
+		local e = t[key]
+		t[key] = nil
 		return e
 	end,
 	copy = function(t, depth)

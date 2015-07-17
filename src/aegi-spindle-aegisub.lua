@@ -15,6 +15,10 @@ docInternal:
 
 require("aegi-spindle-modules")
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+local aegisub = _G.aegisub or {}
+
 Spindle.modules.trace = false
 Spindle.modules.requireAegisub()
 Spindle.modules.load("loader")

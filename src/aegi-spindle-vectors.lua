@@ -46,6 +46,10 @@ docInternal:
 	Spindle.type.isvector4d(mixed object) Returns is x is a vector4d type
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+local math, type = _G.math, _G.type
+
 Spindle.modules.require("oop")
 
 Spindle.oop.generateClass("Vector2D", {}, {}, {x = "number", y = "number"}, "x", "y")

@@ -18,6 +18,9 @@ docInternal:
 	Spindle.utf8.buildWrapper() Wrapper function for core application
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+
 Spindle.utf8 = {
 	--[[ UTF32 -> UTF8
 U-00000000 - U-0000007F:		0xxxxxxx

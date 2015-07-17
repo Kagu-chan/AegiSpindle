@@ -21,6 +21,10 @@ docInternal:
 	Spindle.ffi.defines Table with CDEF definitions
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+local require, type = _G.require, _G.type
+
 Spindle.modules.require("config")
 Spindle.modules.require("cache")
 

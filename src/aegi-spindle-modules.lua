@@ -24,6 +24,10 @@ docInternal:
 
 require("aegi-spindle-main")
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+local pcall, require, select, unpack, debug, error, type, table, pairs = _G.pcall, _G.require, _G.select, _G.unpack, _G.debug, _G.error, _G.type, _G.table, _G.pairs
+
 Spindle.modules = {
 	autoLoadRequires = false,
 	trace = true,
@@ -46,17 +50,18 @@ Spindle.modules = {
 			return false
 		end
 		if not Spindle.modules.loaded(name) then
-			local fName = string.format("aegi-spindle-%s", name)
+			local fName = ("aegi-spindle-%s"):format(name)
 			local result = {pcall(function() return require(fName) end)}
 			if not result[1] then
-				Spindle.debug(string.format("Failed load module [%q]\nFailure Message is\n\t%q",
-					name, result[2]:gsub("^.*:.*:%s", "")
+				Spindle.debug(("Failed load module [%q]\nFailure Message is\n\t%q"):format(
+					name, 
+					result[2]:gsub("^.*:.*:%s", "")
 				))
 				return false
 			else
 				Spindle.modules.modules.add(name)
 				if Spindle.modules.trace then
-					Spindle.debug(string.format("Loaded module [%q] - %d modules loaded",
+					Spindle.debug(("Loaded module [%q] - %d modules loaded"):format(
 						name,
 						Spindle.modules.modules.n
 					))
@@ -64,7 +69,7 @@ Spindle.modules = {
 				return select(2, unpack(result))
 			end
 		else
-			Spindle.debug(string.format("Warning: [%q] can't loaded since it's alredy loaded!", name))
+			Spindle.debug(("Warning: [%q] can't loaded since it's alredy loaded!"):format(name))
 		end
 	end,
 	require = function(name)
@@ -74,7 +79,7 @@ Spindle.modules = {
 		end
 		if not Spindle.modules.loaded(name) then
 			local info = debug.getinfo(2)
-			message = string.format("\n\nError: Module [%q] required! See [%s:line(%d):func(%s)]\n",
+			message = ("\n\nError: Module [%q] required! See [%s:line(%d):func(%s)]\n"):format(
 				name,
 				info.source,
 				info.linedefined,
@@ -92,8 +97,8 @@ Spindle.modules = {
 		Spindle.assert({{"table", "string"}, {"table", "string"}}, {target, source})
 		target = type(target) == "string" and Spindle[target] or target
 		source = type(source) == "string" and Spindle[source] or source
-		local targetWrapper = target.buildWrapper and type(target.buildWrapper) == "function" and target.buildWrapper or nil
-		local sourceWrapper = source.buildWrapper and type(source.buildWrapper) == "function" and source.buildWrapper or nil
+		local targetWrapper = type(target.buildWrapper) == "function" and target.buildWrapper or nil
+		local sourceWrapper = type(source.buildWrapper) == "function" and source.buildWrapper or nil
 		source.buildWrapper = nil
 		for _n, _e in pairs(source) do
 			target[_n] = _e
@@ -107,7 +112,7 @@ Spindle.modules = {
 	end,
 	printLoadedModules = function()
 		local c, modules = 1, Spindle.modules.modules
-		local t = {string.format("Loaded Modules (%s):", modules.n)}
+		local t = {("Loaded Modules (%s):"):format(modules.n)}
 		
 		for key, val in pairs(modules) do
 			if not (key == "add" or key == "n") then

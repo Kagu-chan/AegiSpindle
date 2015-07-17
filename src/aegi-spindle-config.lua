@@ -19,6 +19,9 @@ docInternal:
 	Spindle.config.buildWrapper() Wrapper function for core application
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+
 Spindle.config = {
 	keyValues = {},
 	set = function(key, value)

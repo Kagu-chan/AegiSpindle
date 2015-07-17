@@ -34,12 +34,16 @@ docInternal:
 	Spindle.dev.deprecated(string message) Print out a DEPRECATED-Message is print enabled
 ]]
 
-_G.Spindle = {
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+local print, _VERSION, type, pairs, ipairs, table, error, string, debug = _G.print, _G._VERSION, _G.type, _G.pairs, _G.ipairs, _G.table, _G.error, _G.string, _G.debug
+
+Spindle = {
 	debug = function(...)
 		print(...)
 	end,
 	sayHello = function()
-		Spindle.debug(string.format("Aegi Spindle V %s [LuaJIT (%s)]", Spindle.library.version, _VERSION))
+		Spindle.debug(("Aegi Spindle V %s [LuaJIT (%s)]"):format(Spindle.library.version, _VERSION))
 	end,
 	library = {
 		version = "1.0",
@@ -49,9 +53,9 @@ _G.Spindle = {
 		devPrintDeprecated = true,
 	},
 	initialize = function(printTodo, printFixme, printDeprecated)
-		printTodo = (printTodo or printTodo == nil) and true or false
-		printFixme = (printFixme or printFixme == nil) and true or false
-		printDeprecated = (printDeprecated or printDeprecated == nil) and true or false
+		printTodo = (printTodo or printTodo == nil)-- and true or false
+		printFixme = (printFixme or printFixme == nil)-- and true or false
+		printDeprecated = (printDeprecated or printDeprecated == nil)-- and true or false
 		Spindle.assert({"boolean", "boolean", "boolean"}, {printTodo, printFixme, printDeprecated})
 		Spindle.dev.setDebug("todo", printTodo)
 		Spindle.dev.setDebug("fixme", printFixme)
@@ -95,7 +99,7 @@ _G.Spindle = {
 	]]
 	assert = function(types, values, silent_or_nil)
 		local success, _error, message = true, false, ""
-		silent_or_nil = silent_or_nil and silent_or_nil or false
+		silent_or_nil = silent_or_nil or false
 		local function continue()
 			return success and not _error
 		end
@@ -107,11 +111,11 @@ _G.Spindle = {
 			
 			for _i, _t in ipairs(types) do
 				if is(_t, "table") then
-					_t = string.format("one of ['%s']", table.concat(_t, "', '"))
+					_t = ("one of ['%s']"):format(table.concat(_t, "', '"))
 				elseif is(_t, "boolean") and _t then
 					_t = "any type"
 				end
-				cache[#cache + 1] = string.format("\t%s", _t)
+				cache[#cache + 1] = ("\t%s"):format(_t)
 			end
 			
 			success = false
@@ -238,3 +242,5 @@ _G.Spindle = {
 }
 
 Spindle.sayHello()
+
+_G.Spindle = Spindle

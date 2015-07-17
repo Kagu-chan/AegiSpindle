@@ -33,6 +33,10 @@ docInternal:
 	Spindle.type.buildWrapper() Wrapper function for core application
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+local type, pairs, math = _G.type, _G.pairs, _G.math
+
 Spindle.type = {
 	isnil = function(x) return x == nil end,
 	isbool = function(x) return type(x) == "boolean" end,

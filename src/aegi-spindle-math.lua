@@ -16,6 +16,10 @@ docInternal:
 	Spindle.math.buildWrapper() Wrapper function for core application
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+local math = _G.math
+
 Spindle.math = {
 	randomsteps = function(min, max, step)
 		Spindle.assert({"number", "number", "number"}, {min, max, step})

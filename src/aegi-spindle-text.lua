@@ -18,6 +18,9 @@ docInternal:
 	Spindle.text.buildWrapper() Wrapper function for core application
 ]]
 
+-- Set global functions and objects to local cache for performance
+local Spindle = _G.Spindle or {}
+
 Spindle.text = {
 	trim = function(s)
 		Spindle.assert({"string"}, {s})
