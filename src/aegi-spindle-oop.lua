@@ -16,7 +16,6 @@ docInternal:
 	Spindle.oop.addProperties(table meta, table properties) Add properties to meta table
 	Spindle.oop.addFunctions(table meta, table functions) Add functions to meta table
 	Spindle.oop.createConstructor(table meta, table constructor, table properties, table order) Add constructor function to meta table
-	Spindle.oop.getPropertyTypeRelations(table properties) Returns a table containing property to type relations
 	rawtype(mixed object) type() function
 	type(midex object) type() function extended by meta table type getter
 ]]
@@ -35,7 +34,7 @@ Spindle.oop = {
 		Spindle.oop.addMetaFunctions(meta, order)
 		Spindle.oop.addType(meta, name)
 		Spindle.oop.addProperties(meta, constructor)
-		Spindle.oop.addProperties(meta, Spindle.oop.getPropertyTypeRelations(properties))
+		Spindle.oop.addProperties(meta, properties)
 		Spindle.oop.addFunctions(meta, functions)
 		Spindle.oop.createConstructor(meta, constructor, properties, order)
 		_G[name] = meta
@@ -76,8 +75,9 @@ Spindle.oop = {
 	addProperties = function(meta, properties)
 		for name, _type in pairs(properties) do
 			local key = "_" .. name
+			_type = (type(_type) == "table" and _type.type) and _type.type or type(_type)
 			meta[name] = function(self, value)
-				if value then
+				if value ~= nil then
 					Spindle.assert({_type}, {value})
 					self[key] = value
 				end
@@ -98,7 +98,7 @@ Spindle.oop = {
 				cons["_" .. key] = inp[#assertArray]
 			end
 			for key, value in pairs(properties) do
-				cons["_" .. key] = value
+				cons["_" .. key] = (type(value) == "table" and value.type) and value.type or value
 			end
 			Spindle.assert(assertArray, inp)
 			return setmetatable(cons, meta)

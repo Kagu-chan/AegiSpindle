@@ -92,6 +92,16 @@ Spindle.modules.import("math", Spindle.math_vectors) -- This function will also 
 Spindle.modules.printLoadedModules() -- A list of all loaded modules will be printed out
 [Spindle.oop.generateClass(string name, table properties, table functions, table constructor, ...)]
 Spindle.oop.generateClass("Vector4D", {}, {}, {x = "number", y = "number", z = "number", w = "number"}, "x", "y", "z", "w")
+Spindle.oop.generateClass("FFIObject", {
+	initialized = false, -- Default value for initialized is false and boolean type
+	lib = {type = "ctype"}, -- Default value for lib is false (No default) and ctype type
+}, {}, {
+	name = "string",
+	cdef = "string",
+	init_callback = "function",
+	functions = "table",
+	load_library = "string"
+}, "name", "cdef", "init_callback", "functions", "load_library")
 [rawtype(mixed object)]
 local t = rawtype(Vector2D.new(2, 2)) -- Will result "table"
 [type(midex object)]
