@@ -53,9 +53,9 @@ Spindle.modules = {
 			local fName = ("aegi-spindle-%s"):format(name)
 			local result = {pcall(function() return require(fName) end)}
 			if not result[1] then
-				Spindle.debug(("Failed load module [%q]\nFailure Message is\n\t%q"):format(
+				Spindle.debug(("Failed load module [%q]\nFailure Message is\n\t\"%s\""):format(
 					name, 
-					result[2]:gsub("^.*:.*:%s", "")
+					("Line %s"):format(result[2]:match("^.*:(.*:%s.*)"))
 				))
 				return false
 			else
