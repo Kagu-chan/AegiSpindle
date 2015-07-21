@@ -19,7 +19,7 @@ local dir_handle = Spindle.ffi.ffi().gc(Spindle.ffi.ffi().C.FindFirstFileW(Spind
 ###Spindle.utf8.utf16_to_utf8(string s)
 Returns utf8 representation of utf16 string
 ```lua
-local name = Spindle.utf8.utf16_to_utf8(find_dat
+local name = Spindle.utf8.utf16_to_utf8(find_data[0].cFileName) -- This example is taken from the create_dokumentation-script
 ```
 
 ###Spindle.utf8.buildWrapper()
