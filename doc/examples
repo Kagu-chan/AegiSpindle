@@ -16,20 +16,73 @@ Spindle.math.round(3.14156, Spindle.config.get("floatingpoint_precision"))
 Spindle.math.round(3.14156, Spindle.config.getOrDefault("floatingpoint_precision", 3))
 [Spindle.config.unset(string key)]
 Spindle.config.unset("floatingpoint_precision")
-[Spindle.ffi.user_init]
-Spindle.ffi.user_init = function() Spindle.debug("FFI initialized") end
-[Spindle.ffi.no_windows_callback]
-Spindle.ffi.no_windows_callback = function() Spindle.debug("Add Unix initialization here") end
+[FFIObject.new(string name, string cdef, function init_callback, table functions, string load_library)]
+local ffi_object = FFIObject.new("example", [[typedef unsigned int UINT;]], function() end, {}, "")
+[FFIObject.fromtable(table t)]
+local t = {name = "example", cdef = [[typedef unsigned int UINT;]], init_callback = function() end, functions = {}, load_library = ""}
+local ffi_object = FFIObject.fromtable(t)
+[FFIObject:name([string name])]
+local ffi_object = FFIObject.new("example", [[typedef unsigned int UINT;]], function() end, {}, "")
+ffi_object:name("test")
+ffi_object:name() -- "test"
+[FFIObject:cdef([string cdef])]
+local ffi_object = FFIObject.new("example", [[typedef unsigned int UINT;]], function() end, {}, "")
+ffi_object:cdef([[typedef int INT;]])
+ffi_object:cdef() -- [[typedef int INT;]]
+[FFIObject:init_callback([function init_callback])]
+local ffi_object = FFIObject.new("example", [[typedef unsigned int UINT;]], function() end, {}, "")
+ffi_object:init_callback(function() print(self:name()) end)
+ffi_object:init_callback() -- func
+[FFIObject:functions([table functions])]
+local ffi_object = FFIObject.new("example", [[typedef unsigned int UINT;]], function() end, {}, "")
+ffi_object:functions({test = function() return 0 end})
+ffi_object:functions() -- {test = func}
+[FFIObject:load_library([string load_library])]
+local ffi_object = FFIObject.new("example", [[typedef unsigned int UINT;]], function() end, {}, "")
+ffi_object:load_library("advapi")
+ffi_object:load_library() -- "advapi"
+[FFIObject:lib([cdata lib])]
+local ffi_object = FFIObject.new("example", [[typedef unsigned int UINT;]], function() end, {}, "")
+ffi_object:lib(Spindle.ffi.load("advapi"))
+ffi_object:lib() -- cdata object
+[FFIObject:initialized([boolean initialized])]
+local ffi_object = FFIObject.new("example", [[typedef unsigned int UINT;]], function() end, {}, "")
+ffi_object:initialized(true)
+ffi_object:initialized() -- true
+[FFIObject:totable()]
+local ffi_object = FFIObject.new("example", [[typedef unsigned int UINT;]], function() end, {}, "")
+local t = ffi_object:totable() -- {name = "example", cdef = [[typedef unsigned int UINT;]], init_callback = function() end, functions = {}, load_library = ""}
+[Spindle.ffi.new(string name, string cdef, function init_callback, table functions[, string load_library])]
+Spindle.ffi.new(
+	"example",
+	[[
+typedef unsigned int UINT;
+	]],
+	function() end,
+	{
+		func = function(v)
+			return v
+		end,
+	}
+)
+[Spindle.ffi.send(string ffi_name, string function_name[, ...])]
+local utf16_string = Spindle.ffi.send("utf8_ffi", "utf8_to_utf16", "Hello World")
+-- Otherwhise (Example from FFI.UTF8_FFI Module):
+Spindle.ffi.initialize() -- send method ensure initialization of all library definitions. Here you have to do it manually!
+local utf16_string = Spindle.cache.get("ffi_cache").utf8_ffi:functions()["utf8_to_utf16"]("Hello World")
+[Spindle.ffi.initialize()]
+Spindle.ffi.initialize()
+[Spindle.ffi.ffi()]
+local cp_utf = Spindle.ffi.ffi().C.CP_UTF8 -- Normally 65001 for utf8 functions - Must be defined via CDEF before
 [Spindle.ffi.load(...)]
 local advapi = Spindle.ffi.ffi().load("Advapi32")
 [Spindle.ffi.cdef(...)]
-Spindle.ffi.cdef(Spindle.ffi.defines.misc.libpng)
-[Spindle.ffi.ffi()]
-local advapi = Spindle.ffi.ffi().load("Advapi32")
-[Spindle.ffi.advapi()]
-local advapi = Spindle.ffi.advapi() -- Advapi32 must be loaded before
-[Spindle.ffi.libpng()]
-local libpng = Spindle.ffi.libpng() -- libpng must be loaded before
+Spindle.ffi.cdef([[
+enum{CP_UTF8 = 65001};
+]])
+[Spindle.ffi.cache([table cache])]
+local ffi_cache = Spindle.ffi.cache() -- Getter
+Spindle.ffi.cache(ffi_cache) -- Setter
 [Spindle.debug(...)]
 Spindle.debug("Hello ", "World")
 [Spindle.initialize(bool printTodo, bool printFixme, bool printDeprecated)]
