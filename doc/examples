@@ -340,3 +340,5 @@ if Spindle.type.isvector2d(value) then ... end
 if Spindle.type.isvector3d(value) then ... end
 [Spindle.type.isvector4d(mixed object)]
 if Spindle.type.isvector4d(value) then ... end
+[Spindle.fileutils.readdir(string dir_name)]
+local files = Spindle.fileutils.readdir("C:\\Users")
