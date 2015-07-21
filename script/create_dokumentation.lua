@@ -208,8 +208,8 @@ local function create_docs(base_path, file_pattern)
 			if not pos_s then return "" end
 			ecount = ecount + 1
 			local subs = examples:sub(pos_e+2)
-			local next_start = subs:find("[", 1, true)
-			return ("\n```lua\n%s\n```"):format(subs:sub(1,next_start and next_start-2 or nil))
+			local next_start = subs:find("\n[", 1, true)
+			return ("\n```lua\n%s\n```"):format(subs:sub(1,next_start and next_start-1 or nil))
 		end
 		local out_name = base_path .. "/doc/" .. doc.docs_path
 		local f = io.open(out_name, "w")
