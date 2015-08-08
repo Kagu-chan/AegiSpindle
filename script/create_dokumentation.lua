@@ -71,7 +71,7 @@ local function read_dir(dir_name)
 	return files
 end
 
-local function create_docs(base_path, file_pattern)
+local function create_docs(base_path, file_pattern, base_url)
 	local fcount = 0
 	local ecount = 0
 	local example_file = io.open(base_path .. "/doc/examples", "r")
@@ -177,6 +177,10 @@ local function create_docs(base_path, file_pattern)
 		local function get_underline(text)
 			return ("-"):rep(text:len())
 		end
+		local function get_source_link()
+			local f = doc.source:match("src/(.*)")
+			return ("[%s](%s%s)"):format(f, base_url, f)
+		end
 		local function split_doc_line(line)
 			local pos = line:find(") ", 1, true) or line:find(" ", 1, true) - 1
 			local lead = line:sub(1, pos)
@@ -218,7 +222,7 @@ local function create_docs(base_path, file_pattern)
 		local extends = get_references(doc.extends)
 		local depends = get_references(doc.depends)
 		
-		f:write(("%s\n%s\n%s\n\n* Shortname: %s\n* Version: %s\n* Author: %s\n%s%s\n> %s\n"):format(
+		f:write(("%s\n%s\n%s\n\n* Shortname: %s\n* Version: %s\n* Author: %s\n%s%s* Source: %s\n> %s\n"):format(
 			doc.fullname, 
 			get_underline(doc.fullname), 
 			doc.description,
@@ -227,6 +231,7 @@ local function create_docs(base_path, file_pattern)
 			doc.author,
 			extends and ("* Extends: %s\n"):format(extends) or "",
 			depends and ("* Depends on: %s\n"):format(depends) or "",
+			get_source_link(doc.source),
 			doc.fulldescription
 		))
 		if #doc.docInternal == 1 and doc.docInternal[1] == "" then
@@ -257,6 +262,7 @@ local function create_docs(base_path, file_pattern)
 		local content = get_important_content_from_file(file)
 		local docs_table = get_docs_table(content)
 		docs_table["docs_path"] = extract_dokumentation_path(docs_table.docExternal)
+		docs_table["source"] = file
 		docs[#docs+1] = docs_table
 		
 		write_doc(docs_table)
@@ -266,4 +272,4 @@ local function create_docs(base_path, file_pattern)
 	print("Created documentation for " .. fcount .. " functions or properties and found " .. ecount .. " examples")
 end
 
-create_docs("..", "aegi-spindle-")
+create_docs("..", "aegi-spindle-", "https://github.com/Kagurame/AegiSpindle/blob/master/src/")
