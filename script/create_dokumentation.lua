@@ -222,7 +222,7 @@ local function create_docs(base_path, file_pattern, base_url)
 		local extends = get_references(doc.extends)
 		local depends = get_references(doc.depends)
 		
-		f:write(("%s\n%s\n%s\n\n* Shortname: %s\n* Version: %s\n* Author: %s\n%s%s* Source: %s\n> %s\n"):format(
+		f:write(("%s\n%s\n%s\n\n* Shortname: %s\n* Version: %s\n* Author: %s\n%s%s* Source: %s\n\n> %s\n"):format(
 			doc.fullname, 
 			get_underline(doc.fullname), 
 			doc.description,
