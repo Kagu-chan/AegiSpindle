@@ -6,6 +6,7 @@ Config cache for AegiSpindle
 * Version: 1.0
 * Author: Kagu-chan
 * Source: [aegi-spindle-config.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-config.lua)
+
 > This Module provides a configurator for the library.
 
 ###Spindle.config.keyValues

@@ -8,6 +8,7 @@ Math-Vectors module
 * Extends: [Math](../modules/math.md)
 * Depends on: [Math](../modules/math.md), [Vectors](../modules/vectors.md)
 * Source: [aegi-spindle-math_vectors.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-math_vectors.lua)
+
 > This module extends the Spindle.Math module by vector mathematics.
 
 ###Spindle.math.buildWrapper()

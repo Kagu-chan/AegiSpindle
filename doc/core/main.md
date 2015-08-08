@@ -6,6 +6,7 @@ AegiSpindle Core
 * Version: 1.0
 * Author: Kagu-chan
 * Source: [aegi-spindle-main.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-main.lua)
+
 > Core Module of AegiSpindle. In this Module all sub modules will be stored except pseudo classes.
 
 ###Spindle.debug(...)
