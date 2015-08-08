@@ -5,7 +5,7 @@ Math module
 * Shortname: Math
 * Version: 1.0
 * Author: Kagu-chan
-
+* Source: [aegi-spindle-math.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-math.lua)
 > This module provides various math functions.
 
 ###Spindle.math.randomsteps(number min, number max, number step)

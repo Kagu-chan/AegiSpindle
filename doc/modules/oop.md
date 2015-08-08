@@ -6,7 +6,7 @@ Module for pseudo OOP support
 * Version: 1.0
 * Author: Kagu-chan
 * Depends on: [Table](../modules/table.md)
-
+* Source: [aegi-spindle-oop.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-oop.lua)
 > This module provides pseudo class generation for OOP style code.
 
 ###Spindle.oop.generateClass(string name, table properties, table functions, table constructor, ...)

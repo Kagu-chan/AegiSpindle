@@ -5,7 +5,7 @@ Type utilities
 * Shortname: Type
 * Version: 1.0
 * Author: Kagu-chan
-
+* Source: [aegi-spindle-type.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-type.lua)
 > This module provides many type check functions and some additional functionality.
 
 ###Spindle.type.isnil(mixed x)

@@ -6,7 +6,7 @@ Vector Classes Module
 * Version: 1.0
 * Author: Kagu-chan
 * Depends on: [OOP](../modules/oop.md)
-
+* Source: [aegi-spindle-vectors.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-vectors.lua)
 > This module will generate the Vector classes for working with shapes and similar tasks.
 
 ###Vector2D
