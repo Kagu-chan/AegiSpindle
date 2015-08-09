@@ -14,6 +14,7 @@ docInternal:
 	Spindle.text.headtails(string s) Returns first word and following text seperately from text
 	Spindle.text.words(string s) Iterator function for texts words
 	Spindle.text.wordtable(string s) Returns texts words as table
+	Spindle.text.split(string s[, string seperator]) Split string by seperator into a table. If no seperator is given, seperator is `:'
 	Spindle.text.len(string s) Returns strings length
 	Spindle.text.buildWrapper() Wrapper function for core application
 ]]
@@ -50,6 +51,13 @@ Spindle.text = {
 			t[t.n] = _w
 		end
 		return t
+	end,
+	split = function(s, sep)
+		Spindle.assertOverrides({"string"}, {"string", "string"}, {s, sep})
+		local sep, fields = sep or ":", {}
+		local pattern = ("([^%s]+)"):format(sep)
+		s:gsub(pattern, function(c) fields[#fields + 1] = c end)
+		return fields
 	end,
 	len = function(s)
 		Spindle.assert({"string"}, {s})

@@ -37,6 +37,14 @@ Returns texts words as table
 local words_table = Spindle.text.wordtable("Hello World, how are you?")
 ```
 
+###Spindle.text.split(string s[, string seperator])
+Split string by seperator into a table. If no seperator is given, seperator is `:'
+```lua
+local strings = {"Hello,world,how,are,you", "1:34:test:a_string"}
+local t1 = Spindle.text.split(t[1], ",") -- {"Hello", "world", "how", "are", "you"}
+local t2 = Spindle.text.split(t[2]) -- {"1", "34", "test", "a_string"}
+```
+
 ###Spindle.text.len(string s)
 Returns strings length
 ```lua
