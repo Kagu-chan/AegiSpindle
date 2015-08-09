@@ -14,6 +14,7 @@ docInternal:
 	Spindle.table.removekey(table table, string key) Remove a key from a table
 	Spindle.table.copy(table table[, number depth]) Returns a copy of a table. Full copy if depth is not given
 	Spindle.table.select(table table, function callback) Returns a table only containing elements where callback returns true for
+	Spindle.table.select_first(table table, function callback) Returns first table value matching callback function. Returns false otherwise
 	Spindle.table.map(table table, function callback) Applies the callback for each element in table
 	Spindle.table.buildWrapper() Wrapper function for core application
 ]]
@@ -74,6 +75,13 @@ Spindle.table = {
 			if callback(e, i) then result[i] = e end
 		end
 		return result
+	end,
+	select_first = function(t, callback)
+		Spindle.assert({"table", "function"}, {t, callback})
+		for i, e in pairs(t) do
+			if callback(e, i) then return e end
+		end
+		return false
 	end,
 	map = function(t, callback)
 		Spindle.assert({"table", "function"}, {t, callback})

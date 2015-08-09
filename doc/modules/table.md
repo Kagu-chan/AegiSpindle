@@ -43,6 +43,12 @@ Returns a table only containing elements where callback returns true for
 local new_table = Spindle.table.select(t, function(e, i) return type(e) == "number" end)
 ```
 
+###Spindle.table.select_first(table table, function callback)
+Returns first table value matching callback function. Returns false otherwise
+```lua
+local new_table = Spindle.table.select_first(t, function(e, i) return type(e) == "number" end)
+```
+
 ###Spindle.table.map(table table, function callback)
 Applies the callback for each element in table
 ```lua
