@@ -13,8 +13,8 @@ docInternal:
 	Spindle.table.tostring(table t) Returns tables string representation
 	Spindle.table.removekey(table table, string key) Remove a key from a table
 	Spindle.table.copy(table table[, number depth]) Returns a copy of a table. Full copy if depth is not given
-	Spindle.table.select(table table, function callback) Returns a table only containing elements where callback returns true for
-	Spindle.table.select_first(table table, function callback) Returns first table value matching callback function. Returns false otherwise
+	Spindle.table.select(table table, function callback[, int max_items]) Returns a table only containing elements where callback returns true for. If optional parameter max_items is given, then the resulting table contains at maximum the given amount of elements.
+	Spindle.table.select_first(table table, function callback) Returns first table value matching callback function. Returns empty table otherwise.
 	Spindle.table.map(table table, function callback) Applies the callback for each element in table
 	Spindle.table.buildWrapper() Wrapper function for core application
 ]]
@@ -68,20 +68,25 @@ Spindle.table = {
 		end
 		return depth and copy_recursive_n(t, depth) or copy_recursive(t)
 	end,
-	select = function(t, callback)
-		Spindle.assert({"table", "function"}, {t, callback})
-		local result = {}
-		for i, e in pairs(t) do
-			if callback(e, i) then result[i] = e end
+	select = function(t, callback, max_items)
+		Spindle.assertOverrides({"table", "function"}, {"table", "function", "number"}, {t, callback, max_items})
+		local result, current_items, max_items = {}, 0, max_items or 0
+		if max_items < 0 then
+			error("max_items must be greater or equals to 0!", 2)
 		end
+		for i, e in pairs(t) do
+			if callback(e, i) then 
+				current_items = current_items + 1
+				result[i] = e
+				if current_items == max_items and max_items > 0 then goto end_for end
+			end
+		end
+		::end_for::
 		return result
 	end,
 	select_first = function(t, callback)
 		Spindle.assert({"table", "function"}, {t, callback})
-		for i, e in pairs(t) do
-			if callback(e, i) then return e end
-		end
-		return false
+		return Spindle.table.select(t, callback, 1)
 	end,
 	map = function(t, callback)
 		Spindle.assert({"table", "function"}, {t, callback})

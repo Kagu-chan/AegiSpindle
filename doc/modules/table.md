@@ -37,14 +37,15 @@ local ct = Spindle.table.copy(t) -- An exact copy will be returned
 local ct = Spindle.table.copy(t, 1) -- The table will be copied, but no subtables, since there depth = 2 or higher
 ```
 
-###Spindle.table.select(table table, function callback)
-Returns a table only containing elements where callback returns true for
+###Spindle.table.select(table table, function callback[, int max_items])
+Returns a table only containing elements where callback returns true for. If optional parameter max_items is given, then the resulting table contains at maximum the given amount of elements.
 ```lua
 local new_table = Spindle.table.select(t, function(e, i) return type(e) == "number" end)
+local new_table = Spindle.table.select(t, function(e, i) return type(e) == "number" end, 3)
 ```
 
 ###Spindle.table.select_first(table table, function callback)
-Returns first table value matching callback function. Returns false otherwise
+Returns first table value matching callback function. Returns empty table otherwise.
 ```lua
 local new_table = Spindle.table.select_first(t, function(e, i) return type(e) == "number" end)
 ```

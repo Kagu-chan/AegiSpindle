@@ -175,8 +175,9 @@ local t = {
 }
 local ct = Spindle.table.copy(t) -- An exact copy will be returned
 local ct = Spindle.table.copy(t, 1) -- The table will be copied, but no subtables, since there depth = 2 or higher
-[Spindle.table.select(table table, function callback)]
+[Spindle.table.select(table table, function callback[, int max_items])]
 local new_table = Spindle.table.select(t, function(e, i) return type(e) == "number" end)
+local new_table = Spindle.table.select(t, function(e, i) return type(e) == "number" end, 3)
 [Spindle.table.select_first(table table, function callback)]
 local new_table = Spindle.table.select_first(t, function(e, i) return type(e) == "number" end)
 [Spindle.table.map(table table, function callback)]
