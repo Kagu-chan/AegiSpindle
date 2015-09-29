@@ -13,6 +13,8 @@ docInternal:
 	
 ]]
 
+package.path = ("%s%s?.lua;"):format(package.path, debug.getinfo(1, "S").source:sub(2):match("(.*\\)"))
+
 require("aegi-spindle-modules")
 
 -- Set global functions and objects to local cache for performance
