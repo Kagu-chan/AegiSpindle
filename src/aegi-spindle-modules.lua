@@ -8,7 +8,7 @@ depends:
 author:Kagu-chan
 version:1.0
 type:loader
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/core/modules.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/core/modules.md
 docInternal:
 	Spindle.modules.autoLoadRequires Indicates is this module autoload required modules or raise an exception is not loaded
 	Spindle.modules.trace Indicates the trace level. TRUE will print all module actions, FALSE only critical messages

@@ -8,7 +8,7 @@ depends:
 author:Kagu-chan
 version:1.0
 type:core
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/core/main.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/core/main.md
 docInternal:
 	Spindle.debug(...) Debug function (Wrapper for print(...))
 	Spindle.sayHello() Welcome Message, print out core version and used lua environment version

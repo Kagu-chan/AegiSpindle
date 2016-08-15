@@ -8,7 +8,7 @@ depends:
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/text.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/text.md
 docInternal:
 	Spindle.text.trim(string s) Remove leading and following white spaces from s
 	Spindle.text.headtails(string s) Returns first word and following text seperately from text

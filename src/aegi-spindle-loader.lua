@@ -8,7 +8,7 @@ depends:
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/core/loader.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/core/loader.md
 docInternal:
 	
 ]]
@@ -29,3 +29,4 @@ Spindle.modules.load("math")
 Spindle.modules.load("vectors")
 Spindle.modules.load("fileutils")
 Spindle.modules.load("math_vectors")
+Spindle.modules.load("git_doc")

@@ -5,7 +5,7 @@ Module support module.
 * Shortname: Modules
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-modules.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-modules.lua)
+* Source: [aegi-spindle-modules.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-modules.lua)
 
 > This Core Module will load the core application and load or merge all other modules.
 
@@ -26,8 +26,10 @@ Spindle.module.trace = false -- Will print only critical messages from modules m
 ###Spindle.modules.modules
 Table with loaded module names
 
+
 ###Spindle.modules.modules.add(string name)
 Mark a module as loaded
+
 
 ###Spindle.modules.loaded(string name)
 Returns if a module is loaded or not

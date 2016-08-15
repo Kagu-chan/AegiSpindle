@@ -5,8 +5,8 @@ Module for pseudo OOP support
 * Shortname: OOP
 * Version: 1.0
 * Author: Kagu-chan
-* Depends on: [Table](../modules/table.md)
-* Source: [aegi-spindle-oop.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-oop.lua)
+* Depends on: [Spindle.Table](../modules/table.md)
+* Source: [aegi-spindle-oop.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-oop.lua)
 
 > This module provides pseudo class generation for OOP style code.
 
@@ -29,17 +29,22 @@ Spindle.oop.generateClass("FFIObject", {
 ###Spindle.oop.addMetaFunctions(table meta, table order)
 Add meta functions to meta table
 
+
 ###Spindle.oop.addType(table meta, string name)
 Add type function to meta table
+
 
 ###Spindle.oop.addProperties(table meta, table properties)
 Add properties to meta table
 
+
 ###Spindle.oop.addFunctions(table meta, table functions)
 Add functions to meta table
 
+
 ###Spindle.oop.createConstructor(table meta, table constructor, table properties, table order)
 Add constructor function to meta table
+
 
 ###rawtype(mixed object)
 type() function

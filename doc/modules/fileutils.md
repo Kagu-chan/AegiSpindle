@@ -5,8 +5,8 @@ Fileutils module
 * Shortname: Fileutils
 * Version: 1.0
 * Author: Kagu-chan
-* Depends on: [FFI](../modules/ffi.md), [UTF8_FFI](../modules/utf8-ffi.md)
-* Source: [aegi-spindle-fileutils.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-fileutils.lua)
+* Depends on: [Spindle.FFI](../modules/ffi.md), [Spindle.UTF8.FFI](../modules/utf8-ffi.md)
+* Source: [aegi-spindle-fileutils.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-fileutils.lua)
 
 > Fileutils providing directory search and similar functions
 

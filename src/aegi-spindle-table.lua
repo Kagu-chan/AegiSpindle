@@ -8,10 +8,11 @@ depends:
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/table.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/table.md
 docInternal:
 	Spindle.table.tostring(table t) Returns tables string representation
 	Spindle.table.removekey(table table, string key) Remove a key from a table
+	Spindle.table.count(table t) Counts elements in a table
 	Spindle.table.copy(table table[, number depth]) Returns a copy of a table. Full copy if depth is not given
 	Spindle.table.select(table table, function callback[, int max_items]) Returns a table only containing elements where callback returns true for. If optional parameter max_items is given, then the resulting table contains at maximum the given amount of elements.
 	Spindle.table.select_first(table table, function callback) Returns first table value matching callback function. Returns empty table otherwise.
@@ -67,6 +68,14 @@ Spindle.table = {
 			return new_t
 		end
 		return depth and copy_recursive_n(t, depth) or copy_recursive(t)
+	end,
+	count = function(t)
+		Spindle.assert({"table"}, {t})
+		local c = 0
+		for k, e in pairs(t) do
+			c = c + 1
+		end
+		return c
 	end,
 	select = function(t, callback, max_items)
 		Spindle.assertOverrides({"table", "function"}, {"table", "function", "number"}, {t, callback, max_items})

@@ -5,12 +5,13 @@ Config cache for AegiSpindle
 * Shortname: Config
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-config.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-config.lua)
+* Source: [aegi-spindle-config.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-config.lua)
 
 > This Module provides a configurator for the library.
 
 ###Spindle.config.keyValues
 Table with cached config values (config collection)
+
 
 ###Spindle.config.set(string key, mixed value)
 Cache the given value with given key
@@ -44,3 +45,4 @@ Spindle.config.unset("floatingpoint_precision")
 
 ###Spindle.config.buildWrapper()
 Wrapper function for core application
+

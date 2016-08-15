@@ -66,10 +66,15 @@ typedef unsigned int UINT;
 	}
 )
 [Spindle.ffi.send(string ffi_name, string function_name[, ...])]
-local utf16_string = Spindle.ffi.send("utf8_ffi", "utf8_to_utf16", "Hello World")
--- Otherwhise (Example from FFI.UTF8_FFI Module):
-Spindle.ffi.initialize() -- send method ensure initialization of all library definitions. Here you have to do it manually!
+-- A normal call to the function would looks like the following:
+
+-- Ensure that all Instances of FFIObject get initialized
+Spindle.ffi.initialize()
+-- The you can go into cache, look for your FFIObject instance, catch the functions and call the right one
 local utf16_string = Spindle.cache.get("ffi_cache").utf8_ffi:functions()["utf8_to_utf16"]("Hello World")
+
+-- Much easier is the send method, which will do this stuff for you:
+local utf16_string = Spindle.ffi.send("utf8_ffi", "utf8_to_utf16", "Hello World")
 [Spindle.ffi.initialize()]
 Spindle.ffi.initialize()
 [Spindle.ffi.ffi()]
@@ -164,6 +169,9 @@ Spindle.debug(Spindle.table.tostring({a=1, b=2})) -- Good for debugging (:
 [Spindle.table.removekey(table table, string key)]
 local t = {a = 1, b = 2}
 Spindle.table.removekey(t, "a") -- t.a is nil now
+[Spindle.table.count(table t)]
+local t = {a = 1, 3 = 2, c = "Element"}
+Spindle.table.count(t) -- 3
 [Spindle.table.copy(table table[, number depth])]
 local t = {
 	a = 1,
@@ -254,9 +262,9 @@ local len = Spindle.utf8.len("Hello")
 [Spindle.utf8.bton(string s)]
 local n = Spindle.utf8.bton(_binary_data_string_)
 [Spindle.utf8.utf8_to_utf16(string s)]
-local dir_handle = Spindle.ffi.ffi().gc(Spindle.ffi.ffi().C.FindFirstFileW(Spindle.utf8.utf8_to_utf16(dir_name.."\\*"), find_data), Spindle.ffi.ffi().C.FindClose) -- This example is taken from the create_dokumentation-script
+local dir_handle = Spindle.ffi.ffi().gc(Spindle.ffi.ffi().C.FindFirstFileW(Spindle.utf8.utf8_to_utf16(dir_name.."\\*"), find_data), Spindle.ffi.ffi().C.FindClose) -- This example is taken from the old create_dokumentation-script and catch a directory handle (which is internally utf16 in windows)
 [Spindle.utf8.utf16_to_utf8(string s)]
-local name = Spindle.utf8.utf16_to_utf8(find_data[0].cFileName) -- This example is taken from the create_dokumentation-script
+local name = Spindle.utf8.utf16_to_utf8(find_data[0].cFileName) -- This example is taken from the old create_dokumentation-script and catch the file name from a directory handle object which is internally utf16 in windows
 [Vector2D.new(int x, int y)]
 local vector = Vector2D.new(2, 3)
 [Vector2D.fromtable(table t)]
@@ -349,3 +357,205 @@ if Spindle.type.isvector3d(value) then ... end
 if Spindle.type.isvector4d(value) then ... end
 [Spindle.fileutils.readdir(string dir_name)]
 local files = Spindle.fileutils.readdir("C:\\Users")
+[DocFile.new(string raw)]
+local docfile = DocFile.new("...")
+[DocFile.fromtable(table t)]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+[DocFile:raw([string raw])]
+local docfile = DocFile.new("...")
+docfile:raw("xxx")
+docfile:raw() -- "xxx"
+[DocFile:path([string path])]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:path("xxx")
+docfile:path() -- "xxx"
+[DocFile:source([string source])]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:source("xxx")
+docfile:source() -- "xxx"
+[DocFile:docFile([string docFile])]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:docFile("xxx")
+docfile:docFile() -- "xxx"
+[DocFile:sourceLink([string sourceLink])]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:sourceLink("xxx")
+docfile:sourceLink() -- "xxx"
+[DocFile:documentation([string documentation])]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:documentation("xxx")
+docfile:documentation() -- "xxx"
+[DocFile:totable()]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:totable() -- {raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", }
+[DocFile:filter(string key)]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:filter("name") -- The name from documentation header
+[DocFile:underline()]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:underline() -- if the name is "hello", the result is "-----"
+[DocFile:internal()]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:internal() -- The docInternal parsed as table
+[DocFile:filterReferences(string literal)]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:filterReferences() -- "Cache,Config" will return "[Spindle.Cache](../modules/cache.md), [Spindle.Config](../modules/config.md)"
+[DocFile:build()]
+local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+docfile:build() -- Generates the whole documentation file for the current instance
+[ExampleFile.new(string raw)]
+local examplefile = ExampleFile.new("...")
+[ExampleFile.fromtable(table t)]
+local examplefile = ExampleFile.fromtable({raw="..."})
+[ExampleFile:raw([string raw])]
+local examplefile = ExampleFile.new("...")
+examplefile:raw("xxx")
+examplefile:raw() -- "xxx"
+[ExampleFile:totable()]
+local examplefile = ExampleFile.new("...")
+examplefile:totable() -- {raw="..."}
+[ExampleFile:examples([table examples])]
+local examplefile = ExampleFile.new("...")
+examplefile:examples({"[ExampleFile.new(string raw)]"="local examplefile = ExampleFile.new(\"...\")"})
+[ExampleFile:parse()]
+local examplefile = ExampleFile.new("...")
+examplefile:parse() -- {"[ExampleFile.new(string raw)]"="local examplefile = ExampleFile.new(\"...\")"}
+[Spindle.GitDoc.init(string header, string file_path, string file_prefix, string base_url, string examples, string doc_path)]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+[Spindle.GitDoc.run()]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.run() -- parse the whole documentation
+[Spindle.GitDoc.init_counters()]
+Spindle.GitDoc.init_counters()
+Spindle.cache.get("documentation.counters.objects") -- 0
+Spindle.cache.get("documentation.counters.examples") -- 0
+[Spindle.GitDoc.increment_objects()]
+Spindle.GitDoc.init_counters()
+Spindle.GitDoc.increment_objects()
+Spindle.cache.get("documentation.counters.objects") -- 1
+[Spindle.GitDoc.increment_examples()]
+Spindle.GitDoc.init_counters()
+Spindle.GitDoc.increment_examples()
+Spindle.cache.get("documentation.counters.examples") -- 1
+[Spindle.GitDoc.cache_examples()]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.cache_examples()
+[Spindle.GitDoc.cache_files()]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.cache_files()
+[Spindle.GitDoc.read_files()]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.read_files()
+[Spindle.GitDoc.read_documentation_partial(string file)]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.init_counters()
+Spindle.GitDoc.cache_examples()
+Spindle.GitDoc.cache_files()
+Spindle.GitDoc.read_documentation_partial("aegi-spindle-git_doc")
+[Spindle.GitDoc.extract_doc_path(link)]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.extract_doc_path("doc/modules/gitdoc.md") -- modules/gitdoc.md
+[Spindle.GitDoc.prepare_docs()]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.init_counters()
+Spindle.GitDoc.cache_examples()
+Spindle.GitDoc.cache_files()
+Spindle.GitDoc.read_files()
+Spindle.GitDoc.prepare_docs()
+[Spindle.GitDoc.write_documentation()]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.init_counters()
+Spindle.GitDoc.cache_examples()
+Spindle.GitDoc.cache_files()
+Spindle.GitDoc.read_files()
+Spindle.GitDoc.prepare_docs()
+Spindle.GitDoc.write_documentation()
+[Spindle.GitDoc.write_readme()]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.cache_files()
+Spindle.GitDoc.write_readme()
+[Spindle.GitDoc.write_readme_partial(file f, string title, table docs, string _type)]
+Spindle.GitDoc.init(
+	"AegiSpindle Documentation", 
+	"../src/",
+	"aegi-spindle", 
+	"https://github.com/Kagurame/AegiSpindle/tree/dev/src/",
+	"../doc/examples",
+	"../doc/"
+)
+Spindle.GitDoc.write_readme_partial(io.open("test", "w+", "Documentation", {}, "core")
+[Spindle.type.isdocfile(mixed object)]
+if Spindle.type.isdocfile(object) then ... end
+[Spindle.type.isexamplefile(mixed object)]
+if Spindle.type.isexamplefile(object) then ... end
+[end]

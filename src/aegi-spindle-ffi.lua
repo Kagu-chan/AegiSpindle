@@ -8,7 +8,7 @@ depends:Cache,OOP,Table
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/ffi.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/ffi.md
 docInternal:
 	FFIObject FFIObject Object
 	FFIObject.new(string name, string cdef, function init_callback, table functions, string load_library) Creates a new Instance of FFIObject

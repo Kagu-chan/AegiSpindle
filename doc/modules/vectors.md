@@ -5,13 +5,14 @@ Vector Classes Module
 * Shortname: Vectors
 * Version: 1.0
 * Author: Kagu-chan
-* Depends on: [OOP](../modules/oop.md)
-* Source: [aegi-spindle-vectors.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-vectors.lua)
+* Depends on: [Spindle.OOP](../modules/oop.md)
+* Source: [aegi-spindle-vectors.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-vectors.lua)
 
 > This module will generate the Vector classes for working with shapes and similar tasks.
 
 ###Vector2D
 Vector2D Object
+
 
 ###Vector2D.new(int x, int y)
 Creates a new Instance of Vector2D
@@ -71,6 +72,7 @@ vector:to4d() -- {x = 2, y = 3, z = 0, w = 1}
 
 ###Vector3D
 Vector3D Object
+
 
 ###Vector3D.new(int x, int y, int z)
 Creates a new Instance of Vector3D
@@ -138,6 +140,7 @@ local vector = Vector3D.new(2, 3, 4)
 
 ###Vector4D
 Vector4D Object
+
 
 ###Vector4D.new(int x, int y, int z, int w)
 Creates a new Instance of Vector4D

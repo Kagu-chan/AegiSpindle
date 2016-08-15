@@ -5,7 +5,7 @@ Module for table functions
 * Shortname: Table
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-table.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-table.lua)
+* Source: [aegi-spindle-table.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-table.lua)
 
 > This module provides some functions for working with tables.
 
@@ -20,6 +20,13 @@ Remove a key from a table
 ```lua
 local t = {a = 1, b = 2}
 Spindle.table.removekey(t, "a") -- t.a is nil now
+```
+
+###Spindle.table.count(table t)
+Counts elements in a table
+```lua
+local t = {a = 1, 3 = 2, c = "Element"}
+Spindle.table.count(t) -- 3
 ```
 
 ###Spindle.table.copy(table table[, number depth])
@@ -58,3 +65,4 @@ Spindle.table.map(t, function(e) return tostring(e) end)
 
 ###Spindle.table.buildWrapper()
 Wrapper function for core application
+

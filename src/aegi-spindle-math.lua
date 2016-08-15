@@ -8,7 +8,7 @@ depends:
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/math.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/math.md
 docInternal:
 	Spindle.math.randomsteps(number min, number max, number step) Returns a random value between min and max, but in given steps
 	Spindle.math.trim(number x, number min, number max) Trims a number value to be not lesser then min and not greater then max

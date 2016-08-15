@@ -8,7 +8,7 @@ depends:
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/utf8.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/utf8.md
 docInternal:
 	Spindle.utf8.charrange(string s, int i) Returns bytes charrange
 	Spindle.utf8.chars(string s) Iterator function through texts characters

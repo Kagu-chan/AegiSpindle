@@ -5,7 +5,7 @@ Math module
 * Shortname: Math
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-math.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-math.lua)
+* Source: [aegi-spindle-math.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-math.lua)
 
 > This module provides various math functions.
 
@@ -32,3 +32,4 @@ local rounded = Spindle.math.round(33.33333, 3) -- Will return 33.333
 
 ###Spindle.math.buildWrapper()
 Wrapper function for core application
+

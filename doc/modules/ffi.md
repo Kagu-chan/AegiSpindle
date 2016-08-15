@@ -5,13 +5,14 @@ FFI module for C-Library-Calls
 * Shortname: FFI
 * Version: 1.0
 * Author: Kagu-chan
-* Depends on: [Cache](../modules/cache.md), [OOP](../modules/oop.md), [Table](../modules/table.md)
-* Source: [aegi-spindle-ffi.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-ffi.lua)
+* Depends on: [Spindle.Cache](../modules/cache.md), [Spindle.OOP](../modules/oop.md), [Spindle.Table](../modules/table.md)
+* Source: [aegi-spindle-ffi.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-ffi.lua)
 
 > This Module provides the FFI library and some short cuts.
 
 ###FFIObject
 FFIObject Object
+
 
 ###FFIObject.new(string name, string cdef, function init_callback, table functions, string load_library)
 Creates a new Instance of FFIObject
@@ -109,10 +110,15 @@ typedef unsigned int UINT;
 ###Spindle.ffi.send(string ffi_name, string function_name[, ...])
 Sends a method to libraries function table and ensure initialization of library. Tupel represents the parameters for this function-
 ```lua
-local utf16_string = Spindle.ffi.send("utf8_ffi", "utf8_to_utf16", "Hello World")
--- Otherwhise (Example from FFI.UTF8_FFI Module):
-Spindle.ffi.initialize() -- send method ensure initialization of all library definitions. Here you have to do it manually!
+-- A normal call to the function would looks like the following:
+
+-- Ensure that all Instances of FFIObject get initialized
+Spindle.ffi.initialize()
+-- The you can go into cache, look for your FFIObject instance, catch the functions and call the right one
 local utf16_string = Spindle.cache.get("ffi_cache").utf8_ffi:functions()["utf8_to_utf16"]("Hello World")
+
+-- Much easier is the send method, which will do this stuff for you:
+local utf16_string = Spindle.ffi.send("utf8_ffi", "utf8_to_utf16", "Hello World")
 ```
 
 ###Spindle.ffi.initialize()

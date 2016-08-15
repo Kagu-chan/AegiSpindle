@@ -8,7 +8,7 @@ depends:Loader
 author:Kagu-chan
 version:1.0
 type:entry
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/core/console.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/core/console.md
 docInternal:
 	
 ]]

@@ -5,7 +5,7 @@ AegiSpindle Core
 * Shortname: Main
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-main.lua](https://github.com/Kagurame/AegiSpindle/blob/master/src/aegi-spindle-main.lua)
+* Source: [aegi-spindle-main.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-main.lua)
 
 > Core Module of AegiSpindle. In this Module all sub modules will be stored except pseudo classes.
 
@@ -18,23 +18,30 @@ Spindle.debug("Hello ", "World")
 ###Spindle.sayHello()
 Welcome Message, print out core version and used lua environment version
 
+
 ###Spindle.library
 Internal Core Cache Table
+
 
 ###Spindle.library.version
 Core Version
 
+
 ###Spindle.library.devTracebackDefault
 Default TraceBack steps
+
 
 ###Spindle.library.devPrintTodo
 Indicates if AegiSpindle print out TODO-Messages or not
 
+
 ###Spindle.library.devPrintFixme
 Indicates if AegiSpindle print out FIXME-Messages or not
 
+
 ###Spindle.library.devPrintDeprecated
 Indicates if AegiSpindle print out DEPRECATED-Messages or not
+
 
 ###Spindle.initialize(bool printTodo, bool printFixme, bool printDeprecated)
 Initialize Core with given debug flags and generate Wrapper functions
@@ -72,6 +79,7 @@ Spindle.assertOverrides({"string"}, {"string", true}, {"string", true, {"table, 
 ###Spindle.dev
 Development Sub Module
 
+
 ###Spindle.dev.deeperTrace(int i)
 Overwrite Spindle.library.devTracebackDefault for next dev call
 ```lua
@@ -98,6 +106,7 @@ Spindle.dev.enable("todo", "fixme")
 
 ###Spindle.dev.from()
 Catch traceback function at Spindle.library.devTracebackDefault position for dev message
+
 
 ###Spindle.dev.todo(string message)
 Print out a TODO-Message is print enabled
