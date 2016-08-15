@@ -8,7 +8,7 @@ depends:OOP
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/vectors.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/vectors.md
 docInternal:
 	Vector2D Vector2D Object
 	Vector2D.new(int x, int y) Creates a new Instance of Vector2D

@@ -8,7 +8,7 @@ depends:FFI,UTF8_FFI
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/fileutils.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/fileutils.md
 docInternal:
 	Spindle.fileutils.readdir(string dir_name) Returns a table with directories files and sub directories
 ]]

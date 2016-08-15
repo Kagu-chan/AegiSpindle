@@ -8,7 +8,7 @@ depends:Cache,Config,OOP,Table,Text,Fileutils
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/gitdoc.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/gitdoc.md
 docInternal:
 	DocFile DocFile Object
 	DocFile.new(string raw) Creates a new Instance of DocFile

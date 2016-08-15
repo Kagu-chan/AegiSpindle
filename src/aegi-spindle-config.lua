@@ -8,7 +8,7 @@ depends:
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/config.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/config.md
 docInternal:
 	Spindle.config.keyValues Table with cached config values (config collection)
 	Spindle.config.set(string key, mixed value) Cache the given value with given key

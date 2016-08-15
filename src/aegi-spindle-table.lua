@@ -8,7 +8,7 @@ depends:
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/table.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/table.md
 docInternal:
 	Spindle.table.tostring(table t) Returns tables string representation
 	Spindle.table.removekey(table table, string key) Remove a key from a table

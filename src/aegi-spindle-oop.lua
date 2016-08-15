@@ -8,7 +8,7 @@ depends:Table
 author:Kagu-chan
 version:1.0
 type:module
-docExternal:https://github.com/Kagurame/AegiSpindle/tree/beta/doc/modules/oop.md
+docExternal:https://github.com/Kagurame/AegiSpindle/tree/master/doc/modules/oop.md
 docInternal:
 	Spindle.oop.generateClass(string name, table properties, table functions, table constructor, ...) Generate a class construct named by name, with given properties and functions. constructor contains name - type relation for constructor parameters, tupel parameter the order of constructor variables
 	Spindle.oop.addMetaFunctions(table meta, table order) Add meta functions to meta table
