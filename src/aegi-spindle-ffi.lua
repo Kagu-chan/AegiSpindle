@@ -13,6 +13,7 @@ docInternal:
 	FFIObject FFIObject Object
 	FFIObject.new(string name, string cdef, function init_callback, table functions, string load_library) Creates a new Instance of FFIObject
 	FFIObject.fromtable(table t) Creates instance from given table
+	FFIObject.extendProperty(string name, mixed _type) Add new property and respective getter / setter to the object
 	FFIObject:name([string name]) Sets or gets name value of instance
 	FFIObject:cdef([string cdef]) Sets or gets cdef value of instance
 	FFIObject:init_callback([function init_callback]) Sets or gets init_callback value of instance

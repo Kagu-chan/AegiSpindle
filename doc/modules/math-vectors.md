@@ -7,7 +7,7 @@ Math-Vectors module
 * Author: Kagu-chan
 * Extends: [Spindle.Math](../modules/math.md)
 * Depends on: [Spindle.Math](../modules/math.md), [Spindle.Vectors](../modules/vectors.md)
-* Source: [aegi-spindle-math_vectors.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-math_vectors.lua)
+* Source: [aegi-spindle-math_vectors.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-math_vectors.lua)
 
 > This module extends the Spindle.Math module by vector mathematics.
 

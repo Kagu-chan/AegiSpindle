@@ -6,7 +6,7 @@ FFI module for C-Library-Calls
 * Version: 1.0
 * Author: Kagu-chan
 * Depends on: [Spindle.Cache](../modules/cache.md), [Spindle.OOP](../modules/oop.md), [Spindle.Table](../modules/table.md)
-* Source: [aegi-spindle-ffi.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-ffi.lua)
+* Source: [aegi-spindle-ffi.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-ffi.lua)
 
 > This Module provides the FFI library and some short cuts.
 
@@ -25,6 +25,19 @@ Creates instance from given table
 ```lua
 local t = {name = "example", cdef = [[typedef unsigned int UINT;]], init_callback = function() end, functions = {}, load_library = ""}
 local ffi_object = FFIObject.fromtable(t)
+```
+
+###FFIObject.extendProperty(string name, mixed _type)
+Add new property and respective getter / setter to the object
+```lua
+FFIObject.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to FFIObject
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+FFIObject.extendProperty("test", {type = "number"})
 ```
 
 ###FFIObject:name([string name])

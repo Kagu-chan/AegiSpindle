@@ -98,10 +98,19 @@ Spindle.generateWrapper() -- Calls the buildWrapper() function in all modules in
 [Spindle.initializeAegisub()]
 Spindle.initializeAegisub() -- Calls the initAegisub() function in all modules including this function
 [Spindle.assert(table types, table values[, bool silent_or_nil])]
+-- Simple assert of types: every parameter has a defined type
+-- First parameter has to be a string ("Hello World" in this case)
 Spindle.assert({"string"}, {"Hello World"})
+-- Complex assert of types: the type definition `true` (not "true") means that the parameter can be any type except nil (like `mixed` or `object` in other programming languages)
+-- First parameter has to be a string ("Hello World" in this case), second can be any type except nil
 Spindle.assert({"string", true}, {"Hello World", 33})
+-- Assert with defined range of allowed types: A table instead of a type name means that any in this table listed type is allowed
+-- First parameter has to be a string ("Hello World" in this case), second can be any type except nil, third parameter has to be a table or a string
 Spindle.assert({"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
 [Spindle.assertOverrides(...)]
+-- If you use one parameter, it has to be a string.
+-- If you use two parameters, first has to be string, second any type except nil (which means that case one will be valid)
+-- If you use three parameters, first has to be string, second any type except nil and third has to be a table or string
 Spindle.assertOverrides({"string"}, {"string", true}, {"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
 [Spindle.dev.deeperTrace(int i)]
 Spindle.dev.deeperTrace(4)
@@ -558,4 +567,363 @@ Spindle.GitDoc.write_readme_partial(io.open("test", "w+", "Documentation", {}, "
 if Spindle.type.isdocfile(object) then ... end
 [Spindle.type.isexamplefile(mixed object)]
 if Spindle.type.isexamplefile(object) then ... end
+[Spindle.math.pythagoras(nil | bool | number a, nil | bool | number b[, number c])]
+Spindle.math.pythagoras(3, 3, nil) -- => 3, 3, 9
+Spindle.math.pythagoras(3, 3) -- => 3, 3, 9
+Spindle.math.pythagoras(3, nil, 9) -- => 3, 3, 9
+Spindle.math.pythagoras(nil, 3, 9) -- => 3, 3, 9
+[Spindle.math.between(number x, number min, number max)]
+Spindle.math.between(3, 2, 4) -- => true
+Spindle.math.between(3, 4, 6) -- => false
+[Spindle.table.reset_indexes(table table)]
+local t = {3 = "a", x = "b"}
+Spindle.table.reset_indexes(t) -- => {1 = "a", 2 = "b"}
+[Spindle.table.minmax(table table)]
+local t = {-3, 2, 4, 9, 1}
+Spindle.table.minmax(t) -- -3, 9
+[Spindle.table.min(table table)]
+local t = {-3, 2, 4, 9, 1}
+Spindle.table.min(t) -- -3
+[Spindle.table.max(table table)]
+local t = {-3, 2, 4, 9, 1}
+Spindle.table.max(t) -- 9
+[FFIObject.extendProperty(string name, mixed _type)]
+FFIObject.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to FFIObject
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+FFIObject.extendProperty("test", {type = "number"})
+[DocFile.extendProperty(string name, mixed _type)]
+DocFile.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to DocFile
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+DocFile.extendProperty("test", {type = "number"})
+[ExampleFile.extendProperty(string name, mixed _type)]
+ExampleFile.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to ExampleFile
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+ExampleFile.extendProperty("test", {type = "number"})
+[Vector2D.extendProperty(string name, mixed _type)]
+Vector2D.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to Vector2D
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+Vector2D.extendProperty("test", {type = "number"})
+[Vector3D.extendProperty(string name, mixed _type)]
+Vector3D.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to Vector3D
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+Vector3D.extendProperty("test", {type = "number"})
+[Vector4D.extendProperty(string name, mixed _type)]
+Vector4D.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to Vector4D
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+Vector4D.extendProperty("test", {type = "number"})
+[Matrix.extendProperty(string name, mixed _type)]
+Matrix.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to Matrix
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+Matrix.extendProperty("test", {type = "number"})
+[Vector4D.new(int x, int y, int z, int w)]
+local vector = Vector4D.new(2, 3, 4, 5)
+[Vector4D.fromtable(table t)]
+local vector = Vector4D.fromtable({x=1, y=2, z=3, w=4})
+[Vector4D:x([int x])]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:x(5)
+vector:x() -- 5
+[Vector4D:y([int y])]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:y(5)
+vector:y() -- 5
+[Vector4D:z([int z])]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:z(5)
+vector:z() -- 5
+[Vector4D:w([int w])]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:w(5)
+vector:w() -- 5
+[Vector4D:totable()]
+local vector = Vector4D.new(2, 3, 4, 5)
+vector:totable() -- {x = 2, y = 3, z = 4, w = 5}
+[Matrix.new()]
+local matrix = Matrix.new()
+Spindle.debug(matrix)
+--[[
+	[Matrix](
+		[Vector4D] p1 (
+			x = 1
+			y = 0
+			z = 0
+			w = 0
+		)
+		[Vector4D] p2 (
+			x = 0
+			y = 1
+			z = 0
+			w = 0
+		)
+		[Vector4D] p3 (
+			x = 0
+			y = 0
+			z = 1
+			w = 0
+		)
+		[Vector4D] p4 (
+			x = 0
+			y = 0
+			z = 0
+			w = 1
+		)
+	)
+]]
+[Matrix.fromtable(table t)]
+local t = {
+	p1 = Vector4D.new(1, 0, 0, 0),
+	p2 = Vector4D.new(0, 1, 0, 0),
+	p3 = Vector4D.new(0, 0, 1, 0),
+	p4 = Vector4D.new(0, 0, 0, 1),
+}
+local matrix = Matrix.fromtable(t) -- Results in the same matrix as Matrix.new would
+[Matrix:totable()]
+local matrix = Matrix.new()
+matrix:totable()
+--[[
+	{
+		p1 {
+			x = 1
+			y = 0
+			z = 0
+			w = 0
+		},
+		p2 {
+			x = 0
+			y = 1
+			z = 0
+			w = 0
+		},
+		p3 {
+			x = 0
+			y = 0
+			z = 1
+			w = 0
+		},
+		p4 {
+			x = 0
+			y = 0
+			z = 0
+			w = 1
+		}
+	}
+]]
+[Matrix:p1([Vector4D p1])]
+local matrix = Matrix.new()
+matrix:p1(Vector4D.new(2, 3, 4, 5))
+matrix:p1() -- {x = 2, y = 3, z = 4, w = 5}
+[Matrix:p2([Vector4D p2])]
+local matrix = Matrix.new()
+matrix:p2(Vector4D.new(2, 3, 4, 5))
+matrix:p2() -- {x = 2, y = 3, z = 4, w = 5}
+[Matrix:p3([Vector4D p3])]
+local matrix = Matrix.new()
+matrix:p3(Vector4D.new(2, 3, 4, 5))
+matrix:p3() -- {x = 2, y = 3, z = 4, w = 5}
+[Matrix:p4([Vector4D p4])]
+local matrix = Matrix.new()
+matrix:p4(Vector4D.new(2, 3, 4, 5))
+matrix:p4() -- {x = 2, y = 3, z = 4, w = 5}
+[Matrix:toArray()]
+local matrix = Matrix.new()
+matrix:toArray() -- {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1}
+[Matrix:fromArray(table arr)]
+local arr = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1}
+local matrix = Matrix.new()
+matrix:fromArray(arr) -- Values transported to matrix
+[Matrix:get(int i)]
+local matrix = Matrix.new()
+matrix:get(1) -- 1
+[Matrix:set(int i, number v)]
+local matrix = Matrix.new()
+matrix:set(3, 7)
+matrix:get(3) -- 7
+matrix:p1():z() -- 7
+[Matrix:multiply(Matrix mat)]
+local matrix = Matrix.new()
+matrix:set(1, 33)
+local matrixB = Matrix.new()
+matrixB:set(3, 64)
+matrixB:set(1, 19)
+matrixB:set(14, 4)
+matrix:multiply(matrixB)
+matrix:toArray() -- {627, 0, 64, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 4, 0, 1}
+[Matrix:translate(Vector3D vector)]
+local matrix = Matrix.new()
+matrix:set(1, 33)
+local matrixB = Matrix.new()
+matrixB:set(3, 64)
+matrixB:set(1, 19)
+matrixB:set(14, 4)
+matrix:multiply(matrixB)
+matrix:translate(Vector3D.new(3, 6, 9))
+matrix:toArray() --[[ 
+{
+	627,
+	0,
+	64,
+	0,
+	0,
+	1,
+	0,
+	0,
+	0,
+	0,
+	1,
+	0,
+	1881,
+	10,
+	201,
+	1
+}
+]]
+[Matrix:scale(Vector3D vector)]
+local matrix = Matrix.new()
+matrix:set(1, 33)
+local matrixB = Matrix.new()
+matrixB:set(3, 64)
+matrixB:set(1, 19)
+matrixB:set(14, 4)
+matrix:multiply(matrixB)
+matrix:translate(Vector3D.new(3, 6, 9))
+matrix:scale(Vector3D.new(3, 6, 9))
+matrix:toArray() --[[
+{
+	1881,
+	0,
+	192,
+	0,
+	0,
+	6,
+	0,
+	0,
+	0,
+	0,
+	9,
+	0,
+	1881,
+	10,
+	201,
+	1
+}
+]]
+[Matrix:rotate(string axis, number angle)]
+local matrix = Matrix.new()
+matrix:set(1, 33)
+local matrixB = Matrix.new()
+matrixB:set(3, 64)
+matrixB:set(1, 19)
+matrixB:set(14, 4)
+matrix:multiply(matrixB)
+matrix:translate(Vector3D.new(3, 6, 9))
+matrix:scale(Vector3D.new(3, 6, 9))
+matrix:rotate("x", 13)
+matrix:rotate("y", 13)
+matrix:rotate("z", 13)
+matrix:toArray() --[[
+{
+	1785.8158005444,
+	-1.0192772853748,
+	184.66176598851,
+	0,
+	412.28806355513,
+	5.7646812968701,
+	40.554714163689,
+	0,
+	-423.13293322081,
+	1.3151134403672,
+	-34.646029225676,
+	0,
+	1881,
+	10,
+	201,
+	1
+}
+]]
+[Matrix:inverse()]
+local matrix = Matrix.new()
+matrix:set(1, 33)
+local matrixB = Matrix.new()
+matrixB:set(3, 64)
+matrixB:set(1, 19)
+matrixB:set(14, 4)
+matrix:multiply(matrixB)
+matrix:translate(Vector3D.new(3, 6, 9))
+matrix:scale(Vector3D.new(3, 6, 9))
+matrix:rotate("x", 13)
+matrix:rotate("y", 13)
+matrix:rotate("z", 13)
+matrix:inverse()
+matrix:toArray() --[[
+{
+	-0.0024913596624627, 
+	0.002043212433844, 
+	-0.010887163325289, 
+	0, 
+	-0.028313257927079, 
+	0.16013003602417, 
+	0.03653092889909, 
+	0, 
+	0.029352315355427, 
+	-0.018875505284719, 
+	0.10548855812773, 
+	0, 
+	-0.93043528207764, 
+	-1.6506063860738, 
+	-1.0897552577966, 
+	1
+}
+]]
+[Matrix:transform(Vector3D | Vector4D vector)]
+local matrix = Matrix.new()
+matrix:set(1, 33)
+local matrixB = Matrix.new()
+matrixB:set(3, 64)
+matrixB:set(1, 19)
+matrixB:set(14, 4)
+matrix:multiply(matrixB)
+matrix:translate(Vector3D.new(3, 6, 9))
+matrix:scale(Vector3D.new(3, 6, 9))
+matrix:rotate("x", 13)
+matrix:rotate("y", 13)
+matrix:rotate("z", 13)
+matrix:inverse()
+
+local point = Vector4D.new(3, 6, 9, 12)
+point = matrix:transform(point) -- {-19.010246327001, -11.078406173283, -11.941141986991, 12}
 [end]

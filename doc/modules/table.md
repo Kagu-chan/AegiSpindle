@@ -5,7 +5,7 @@ Module for table functions
 * Shortname: Table
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-table.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-table.lua)
+* Source: [aegi-spindle-table.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-table.lua)
 
 > This module provides some functions for working with tables.
 
@@ -61,6 +61,34 @@ local new_table = Spindle.table.select_first(t, function(e, i) return type(e) ==
 Applies the callback for each element in table
 ```lua
 Spindle.table.map(t, function(e) return tostring(e) end)
+```
+
+###Spindle.table.reset_indexes(table table)
+Reset all indexes and recount from 1 in a table
+```lua
+local t = {3 = "a", x = "b"}
+Spindle.table.reset_indexes(t) -- => {1 = "a", 2 = "b"}
+```
+
+###Spindle.table.minmax(table table)
+Returns the lowest and highest value from given table
+```lua
+local t = {-3, 2, 4, 9, 1}
+Spindle.table.minmax(t) -- -3, 9
+```
+
+###Spindle.table.min(table table)
+Returns the lowest value from given table
+```lua
+local t = {-3, 2, 4, 9, 1}
+Spindle.table.min(t) -- -3
+```
+
+###Spindle.table.max(table table)
+Returns the highest value from given table
+```lua
+local t = {-3, 2, 4, 9, 1}
+Spindle.table.max(t) -- 9
 ```
 
 ###Spindle.table.buildWrapper()

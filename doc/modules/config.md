@@ -5,7 +5,7 @@ Config cache for AegiSpindle
 * Shortname: Config
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-config.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-config.lua)
+* Source: [aegi-spindle-config.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-config.lua)
 
 > This Module provides a configurator for the library.
 

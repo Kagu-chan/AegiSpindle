@@ -5,7 +5,7 @@ Text- and String-Functions
 * Shortname: Text
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-text.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-text.lua)
+* Source: [aegi-spindle-text.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-text.lua)
 
 > This module provides some functions for working with texts.
 

@@ -6,7 +6,7 @@ Vector Classes Module
 * Version: 1.0
 * Author: Kagu-chan
 * Depends on: [Spindle.OOP](../modules/oop.md)
-* Source: [aegi-spindle-vectors.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-vectors.lua)
+* Source: [aegi-spindle-vectors.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-vectors.lua)
 
 > This module will generate the Vector classes for working with shapes and similar tasks.
 
@@ -24,6 +24,19 @@ local vector = Vector2D.new(2, 3)
 Creates instance from given table
 ```lua
 local vector = Vector2D.fromtable({x=1, y=2})
+```
+
+###Vector2D.extendProperty(string name, mixed _type)
+Add new property and respective getter / setter to the object
+```lua
+Vector2D.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to Vector2D
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+Vector2D.extendProperty("test", {type = "number"})
 ```
 
 ###Vector2D:x([int x])
@@ -84,6 +97,19 @@ local vector = Vector3D.new(2, 3, 4)
 Creates instance from given table
 ```lua
 local vector = Vector3D.fromtable({x=1, y=2, z=3})
+```
+
+###Vector3D.extendProperty(string name, mixed _type)
+Add new property and respective getter / setter to the object
+```lua
+Vector3D.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to Vector3D
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+Vector3D.extendProperty("test", {type = "number"})
 ```
 
 ###Vector3D:x([int x])
@@ -152,6 +178,19 @@ local vector = Vector4D.new(2, 3, 4, 5)
 Creates instance from given table
 ```lua
 local vector = Vector4D.fromtable({x=1, y=2, z=3, w=4})
+```
+
+###Vector4D.extendProperty(string name, mixed _type)
+Add new property and respective getter / setter to the object
+```lua
+Vector4D.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to Vector4D
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+Vector4D.extendProperty("test", {type = "number"})
 ```
 
 ###Vector4D:x([int x])

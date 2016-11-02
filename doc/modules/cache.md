@@ -5,7 +5,7 @@ Value cache for AegiSpindle
 * Shortname: Cache
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-cache.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-cache.lua)
+* Source: [aegi-spindle-cache.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-cache.lua)
 
 > This module provides various caching functions to store variables in global context without using the global context itself.
 

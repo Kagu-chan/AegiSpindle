@@ -6,7 +6,7 @@ Console Main Module (Entry Script)
 * Version: 1.0
 * Author: Kagu-chan
 * Depends on: [Spindle.Loader](../core/loader.md)
-* Source: [aegi-spindle-console.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-console.lua)
+* Source: [aegi-spindle-console.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-console.lua)
 
 > This script is used for usage as console script.
 

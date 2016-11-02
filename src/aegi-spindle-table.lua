@@ -17,6 +17,10 @@ docInternal:
 	Spindle.table.select(table table, function callback[, int max_items]) Returns a table only containing elements where callback returns true for. If optional parameter max_items is given, then the resulting table contains at maximum the given amount of elements.
 	Spindle.table.select_first(table table, function callback) Returns first table value matching callback function. Returns empty table otherwise.
 	Spindle.table.map(table table, function callback) Applies the callback for each element in table
+	Spindle.table.reset_indexes(table table) Reset all indexes and recount from 1 in a table
+	Spindle.table.minmax(table table) Returns the lowest and highest value from given table
+	Spindle.table.min(table table) Returns the lowest value from given table
+	Spindle.table.max(table table) Returns the highest value from given table
 	Spindle.table.buildWrapper() Wrapper function for core application
 ]]
 
@@ -103,6 +107,31 @@ Spindle.table = {
 		for i, e in pairs(t) do
 			t[i] = callback(e, i)
 		end
+	end,
+	reset_indexes = function(t)
+		Spindle.assert({"table"}, {t})
+		local r = {}
+		for i, e in pairs(t) do
+			r[#r+1] = e
+		end
+		return r
+	end,
+	minmax = function(tab)
+		Spindle.assert({"table"}, {tab})
+		local min, max = 0, 0
+		for i, e in ipairs(tab) do
+			if e < min then min = e end
+			if e > max then max = e end
+		end
+		return min, max
+	end,
+	min = function(tab)
+		Spindle.assert({"table"}, {tab})
+		return ({Spindle.table.minmax(tab)})[1]
+	end,
+	max = function(tab)
+		Spindle.assert({"table"}, {tab})
+		return ({Spindle.table.minmax(tab)})[2]
 	end,
 	buildWrapper = function()
 		Spindle.dev.todo("Write wrapper")
