@@ -13,6 +13,7 @@ docInternal:
 	DocFile DocFile Object
 	DocFile.new(string raw) Creates a new Instance of DocFile
 	DocFile.fromtable(table t) Creates a new Instance from given table
+	DocFile.extendProperty(string name, mixed _type) Add new property and respective getter / setter to the object
 	DocFile:raw([string raw]) Sets or gets raw value of instance
 	DocFile:path([string path]) Sets or gets path value of instance
 	DocFile:source([string source]) Sets or gets source value of instance
@@ -28,6 +29,7 @@ docInternal:
 	ExampleFile ExampleFile Object
 	ExampleFile.new(string raw) Creates a new Instance of ExampleFile
 	ExampleFile.fromtable(table t) Creates a new Instance from given table
+	ExampleFile.extendProperty(string name, mixed _type) Add new property and respective getter / setter to the object
 	ExampleFile:raw([string raw]) Sets or gets raw value of instance
 	ExampleFile:examples([table examples]) Sets or gets examples value of instance
 	ExampleFile:parse() Parse the raw into a table of examples

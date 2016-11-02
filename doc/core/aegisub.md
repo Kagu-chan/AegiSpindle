@@ -6,7 +6,7 @@ Aegisub Main Module (Entry Script)
 * Version: 1.0
 * Author: Kagu-chan
 * Depends on: [Spindle.Loader](../core/loader.md)
-* Source: [aegi-spindle-aegisub.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-aegisub.lua)
+* Source: [aegi-spindle-aegisub.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-aegisub.lua)
 
 > This script is used for Aegisub as entry script.
 

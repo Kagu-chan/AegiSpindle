@@ -6,7 +6,7 @@ Module for pseudo OOP support
 * Version: 1.0
 * Author: Kagu-chan
 * Depends on: [Spindle.Table](../modules/table.md)
-* Source: [aegi-spindle-oop.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-oop.lua)
+* Source: [aegi-spindle-oop.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-oop.lua)
 
 > This module provides pseudo class generation for OOP style code.
 
@@ -32,6 +32,10 @@ Add meta functions to meta table
 
 ###Spindle.oop.addType(table meta, string name)
 Add type function to meta table
+
+
+###Spindle.oop.addExtendMethod(table meta)
+Add extendPropertyMethod to meta table
 
 
 ###Spindle.oop.addProperties(table meta, table properties)

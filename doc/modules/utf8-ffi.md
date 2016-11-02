@@ -7,7 +7,7 @@ UTFS8 ffi extension module
 * Author: Kagu-chan
 * Extends: [Spindle.UTF8](../modules/utf8.md)
 * Depends on: [Spindle.UTF8](../modules/utf8.md), [Spindle.FFI](../modules/ffi.md)
-* Source: [aegi-spindle-utf8_ffi.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-utf8_ffi.lua)
+* Source: [aegi-spindle-utf8_ffi.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-utf8_ffi.lua)
 
 > This module extends the Spindle.UTF8 module by C-Functions.
 

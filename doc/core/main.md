@@ -5,7 +5,7 @@ AegiSpindle Core
 * Shortname: Main
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-main.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-main.lua)
+* Source: [aegi-spindle-main.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-main.lua)
 
 > Core Module of AegiSpindle. In this Module all sub modules will be stored except pseudo classes.
 
@@ -63,16 +63,25 @@ Spindle.initializeAegisub() -- Calls the initAegisub() function in all modules i
 ```
 
 ###Spindle.assert(table types, table values[, bool silent_or_nil])
-Check function parameters. Refer function comment for more details
+Check function parameters.
 ```lua
+-- Simple assert of types: every parameter has a defined type
+-- First parameter has to be a string ("Hello World" in this case)
 Spindle.assert({"string"}, {"Hello World"})
+-- Complex assert of types: the type definition `true` (not "true") means that the parameter can be any type except nil (like `mixed` or `object` in other programming languages)
+-- First parameter has to be a string ("Hello World" in this case), second can be any type except nil
 Spindle.assert({"string", true}, {"Hello World", 33})
+-- Assert with defined range of allowed types: A table instead of a type name means that any in this table listed type is allowed
+-- First parameter has to be a string ("Hello World" in this case), second can be any type except nil, third parameter has to be a table or a string
 Spindle.assert({"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
 ```
 
 ###Spindle.assertOverrides(...)
-Check function parameters with optional parameter checks. Refer function comment for more details
+Check function parameters, but with multiple method signatures.
 ```lua
+-- If you use one parameter, it has to be a string.
+-- If you use two parameters, first has to be string, second any type except nil (which means that case one will be valid)
+-- If you use three parameters, first has to be string, second any type except nil and third has to be a table or string
 Spindle.assertOverrides({"string"}, {"string", true}, {"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
 ```
 

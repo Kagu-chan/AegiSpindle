@@ -6,7 +6,7 @@ Git Documentation Module
 * Version: 1.0
 * Author: Kagu-chan
 * Depends on: [Spindle.Cache](../modules/cache.md), [Spindle.Config](../modules/config.md), [Spindle.OOP](../modules/oop.md), [Spindle.Table](../modules/table.md), [Spindle.Text](../modules/text.md), [Spindle.Fileutils](../modules/fileutils.md)
-* Source: [aegi-spindle-git_doc.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-git_doc.lua)
+* Source: [aegi-spindle-git_doc.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-git_doc.lua)
 
 > This Script will create a github conform documentation of given src directory
 
@@ -24,6 +24,19 @@ local docfile = DocFile.new("...")
 Creates a new Instance from given table
 ```lua
 local docfile = DocFile.fromtable({raw="...", path="...", source="...", docFile="...", sourceLink="...", documentation="...", })
+```
+
+###DocFile.extendProperty(string name, mixed _type)
+Add new property and respective getter / setter to the object
+```lua
+DocFile.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to DocFile
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+DocFile.extendProperty("test", {type = "number"})
 ```
 
 ###DocFile:raw([string raw])
@@ -130,6 +143,19 @@ local examplefile = ExampleFile.new("...")
 Creates a new Instance from given table
 ```lua
 local examplefile = ExampleFile.fromtable({raw="..."})
+```
+
+###ExampleFile.extendProperty(string name, mixed _type)
+Add new property and respective getter / setter to the object
+```lua
+ExampleFile.extendProperty("test", 0)
+-- Creates the property "test" with default value `0` and type int to ExampleFile
+-- Also two new methods are available:
+instance:test() -- Gets value of test
+instance:test(int value) -- Sets value of test
+-- The last parameter has to be a value of the desired type.
+-- You can also use a table with element type and the desired type as string
+ExampleFile.extendProperty("test", {type = "number"})
 ```
 
 ###ExampleFile:raw([string raw])

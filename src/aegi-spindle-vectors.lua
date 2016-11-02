@@ -13,6 +13,7 @@ docInternal:
 	Vector2D Vector2D Object
 	Vector2D.new(int x, int y) Creates a new Instance of Vector2D
 	Vector2D.fromtable(table t) Creates instance from given table
+	Vector2D.extendProperty(string name, mixed _type) Add new property and respective getter / setter to the object
 	Vector2D:x([int x]) Sets or gets x value of instance
 	Vector2D:y([int y]) Sets or gets y value of instance
 	Vector2D:totable() Returns table representation of instance
@@ -22,6 +23,7 @@ docInternal:
 	Vector3D Vector3D Object
 	Vector3D.new(int x, int y, int z) Creates a new Instance of Vector3D
 	Vector3D.fromtable(table t) Creates instance from given table
+	Vector3D.extendProperty(string name, mixed _type) Add new property and respective getter / setter to the object
 	Vector3D:x([int x]) Sets or gets x value of instance
 	Vector3D:y([int y]) Sets or gets y value of instance
 	Vector3D:z([int z]) Sets or gets z value of instance
@@ -32,6 +34,7 @@ docInternal:
 	Vector4D Vector4D Object
 	Vector4D.new(int x, int y, int z, int w) Creates a new Instance of Vector4D
 	Vector4D.fromtable(table t) Creates instance from given table
+	Vector4D.extendProperty(string name, mixed _type) Add new property and respective getter / setter to the object
 	Vector4D:x([int x]) Sets or gets x value of instance
 	Vector4D:y([int y]) Sets or gets y value of instance
 	Vector4D:z([int z]) Sets or gets z value of instance
@@ -63,7 +66,7 @@ function Vector2D:to3d()
 	return Vector3D.new(self:x(), self:y(), 0)
 end
 function Vector2D:to4d()
-	return Vector2D.new(self:x(), self:y(), 0, 1)
+	return Vector4D.new(self:x(), self:y(), 0, 1)
 end
 
 function Vector3D:distance()
@@ -73,7 +76,7 @@ function Vector3D:to2d()
 	return Vector2D.new(self:x(), self:y())
 end
 function Vector3D:to4d()
-	return Vector2D.new(self:x(), self:y(), self:z(), 1)
+	return Vector4D.new(self:x(), self:y(), self:z(), 1)
 end
 
 function Vector4D:distance()

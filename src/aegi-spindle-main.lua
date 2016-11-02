@@ -21,8 +21,8 @@ docInternal:
 	Spindle.initialize(bool printTodo, bool printFixme, bool printDeprecated) Initialize Core with given debug flags and generate Wrapper functions
 	Spindle.generateWrapper() Iterates all registered modules and call buildWrapper if exists in module
 	Spindle.initializeAegisub() Iterates all registered modules and call initAegisub if exists in module
-	Spindle.assert(table types, table values[, bool silent_or_nil]) Check function parameters. Refer function comment for more details
-	Spindle.assertOverrides(...) Check function parameters with optional parameter checks. Refer function comment for more details
+	Spindle.assert(table types, table values[, bool silent_or_nil]) Check function parameters.
+	Spindle.assertOverrides(...) Check function parameters, but with multiple method signatures.
 	Spindle.dev Development Sub Module
 	Spindle.dev.deeperTrace(int i) Overwrite Spindle.library.devTracebackDefault for next dev call
 	Spindle.dev.setDebug(string key, bool state) Set print flag for given key to given state
@@ -36,7 +36,7 @@ docInternal:
 
 -- Set global functions and objects to local cache for performance
 local Spindle
-local print, _VERSION, type, pairs, ipairs, table, error, string, debug = _G.print, _G._VERSION, _G.type, _G.pairs, _G.ipairs, _G.table, _G.error, _G.string, _G.debug
+local print, _VERSION, pairs, ipairs, table, error, string, debug = _G.print, _G._VERSION, _G.pairs, _G.ipairs, _G.table, _G.error, _G.string, _G.debug
 
 Spindle = {
 	debug = function(...)
@@ -77,26 +77,6 @@ Spindle = {
 			end
 		end
 	end,
-	--[[ Checks function parameters
-		types and values must be in format:
-			types: table with expected type(s) {"type", "type", true, {"string", "number"}}
-				true means no type, but not optional
-				table means "one of them"
-			values: table with the given parameters
-		silent: if silent is set true [optional], then no exception will be raised
-		Example: 
-			Spindle.assert({"boolean", "boolean", "boolean"}, {printTodo, printFixme, printDeprecated})
-				First, second and third parameter has to be boolean values.
-				Parameters are printTodo, printFixme and printDeprecated
-			Spindle.assert({"string", true}, {key, value})
-				First parameter has to be a string value
-				Second parameter can have any type.
-				Parameters are key and value
-			Spindle.assert({{"table", "string"}, {"table", "string"}}, {target, source})
-				First parameter can be a table or a string. 
-				Second parameter can be a table or a string.
-				Parameters are target and source
-	]]
 	assert = function(types, values, silent_or_nil)
 		local success, _error, message = true, false, ""
 		silent_or_nil = silent_or_nil or false
@@ -151,14 +131,6 @@ Spindle = {
 			return {success, message}
 		end
 	end,
-	--[[ Checks function parameters with optional parameters
-		Expect a list of tables with possibles parameter constellations. As last parameter there must be a table with given function parameters.
-		See Spindle.assert() for more details.
-		Example: Spindle.assertOverrides({"table"}, {"table", "number"}, {t, depth})
-			First parameter has to be a table.
-			Second parameter has to be a number, but is optional.
-			Parameters are t and depth
-	]]
 	assertOverrides = function(...)
 		local parameters = {...}
 		local function getLast(_type)

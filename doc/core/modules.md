@@ -5,7 +5,7 @@ Module support module.
 * Shortname: Modules
 * Version: 1.0
 * Author: Kagu-chan
-* Source: [aegi-spindle-modules.lua](https://github.com/Kagurame/AegiSpindle/tree/beta/src/aegi-spindle-modules.lua)
+* Source: [aegi-spindle-modules.lua](https://github.com/Kagurame/AegiSpindle/tree/dev/src/aegi-spindle-modules.lua)
 
 > This Core Module will load the core application and load or merge all other modules.
 
