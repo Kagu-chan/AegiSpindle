@@ -86,7 +86,7 @@ documentation.
 | Module   | Windows   | Linux   | OSX   |
 | ---------|-----------|---------|-------|
 | Spindle.Cache | Yes | Yes | Yes |
-| Spindle.CMD | Yes | *Not tested* | *Not tested* |
+| Spindle.CMD | Yes | *Not tested* | Yes |
 | Spindle.Config | Yes | Yes | Yes |
 | Spindle.FFI | Yes | *Not tested* | Yes |
 | Spindle.Fileutils | Yes | **No** | **No** |
