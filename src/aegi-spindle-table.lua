@@ -57,7 +57,7 @@ Spindle.table = {
 	end,
 	copy = function(t, depth)
 		Spindle.assertOverrides({"table"}, {"table", "number"}, {t, depth})
-		depth = depth >= 1 and depth or nil
+		depth = type(depth) == "number" and depth >= 1 and depth or nil
 		local function copy_recursive(old_t)
 			local new_t = {}
 			for key, value in pairs(old_t) do
