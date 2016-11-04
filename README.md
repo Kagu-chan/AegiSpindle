@@ -31,8 +31,7 @@ the usage as CLI script and as plugin for Aegisub [2].
 
 | Release   | Current   |
 | ----------|-----------|
-| **STABLE**| *not yet* |
-| **DEV**   | `0.0.0`   |
+| **DEVELOP** | `0.0.0.0` |
 
 Please [REQUIREMENTS](deps)
 
