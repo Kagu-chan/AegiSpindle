@@ -14,7 +14,7 @@ docInternal:
 	Spindle.text.headtails(string s) Returns first word and following text seperately from text
 	Spindle.text.words(string s) Iterator function for texts words
 	Spindle.text.wordtable(string s) Returns texts words as table
-	Spindle.text.split(string s[, string seperator]) Split string by seperator into a table. If no seperator is given, seperator is `:'
+	Spindle.text.split(string s[, string seperator][, number count]) Split string by seperator into a table. If no seperator is given, seperator is `:'. If count is given, the table contains at maximum count items
 	Spindle.text.len(string s) Returns strings length
 	Spindle.text.buildWrapper() Wrapper function for core application
 ]]
@@ -52,11 +52,23 @@ Spindle.text = {
 		end
 		return t
 	end,
-	split = function(s, sep)
-		Spindle.assertOverrides({"string"}, {"string", "string"}, {s, sep})
-		local sep, fields = sep or ":", {}
+	split = function(s, sep_or_count, count)
+		Spindle.assertOverrides({"string"}, {"string", "string"}, {"string", "number"}, {"string", "string", "number"}, {s, sep_or_count, count})
+		local sep, count, fields, result = 
+			sep_or_count and (type(sep_or_count) == "string" and sep_or_count or ":") or ":", 
+			count or (sep_or_count and type(sep_or_count) == "number" and sep_or_count or 0), 
+			{}, {}
+		
 		local pattern = ("([^%s]+)"):format(sep)
-		s:gsub(pattern, function(c) fields[#fields + 1] = c end)
+		s:gsub(pattern, function(c)
+			if count == 0 or #fields < count then 
+				fields[#fields + 1] = c
+			else
+				local cur = fields[#fields]
+				cur = cur .. sep .. c or c
+				fields[#fields] = cur
+			end
+		end)
 		return fields
 	end,
 	len = function(s)
