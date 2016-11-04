@@ -35,7 +35,7 @@ Spindle.oop = {
 		Spindle.oop.addMetaFunctions(meta, order)
 		Spindle.oop.addType(meta, name)
 		Spindle.oop.addExtendMethod(meta)
-		Spindle.oop.addProperties(meta, constructor)
+		Spindle.oop.addConstructorProperties(meta, constructor)
 		Spindle.oop.addProperties(meta, properties)
 		Spindle.oop.addFunctions(meta, functions)
 		Spindle.oop.createConstructor(meta, constructor, properties, order)
@@ -92,20 +92,24 @@ Spindle.oop = {
 			meta.extendProperty(name, _type)
 		end
 	end,
+	addConstructorProperties = function(meta, properties)
+		for name, _type in pairs(properties) do
+			meta.extendProperty(name, {type = _type})
+		end
+	end,
 	addFunctions = function(meta, functions)
 		for name, func in pairs(functions) do
 			meta[name] = func
 		end
 	end,
 	createConstructor = function(meta, constructor, properties, order)
-		meta.propDefaults = properties
 		meta.new = function(...)
-			local assertArray, inp, cons = {}, {...}, {}
+			local assertArray, inp, cons, props = {}, {...}, {}, Spindle.table.copy(properties)
 			for _, key in ipairs(order) do
 				assertArray[#assertArray+1] = constructor[key]
 				cons["_" .. key] = inp[#assertArray]
 			end
-			for key, value in pairs(properties) do
+			for key, value in pairs(props) do
 				if (type(value) == "table" and value.type) then
 					if type(value.type) == "function" then
 						cons["_" .. key] = value
