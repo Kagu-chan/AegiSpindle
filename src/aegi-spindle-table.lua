@@ -21,6 +21,7 @@ docInternal:
 	Spindle.table.minmax(table table) Returns the lowest and highest value from given table
 	Spindle.table.min(table table) Returns the lowest value from given table
 	Spindle.table.max(table table) Returns the highest value from given table
+	Spindle.table.contains(table t, mixed val[, string mode]) Checks if a key or value is present in a table. Check per default for value by mode = `value', otherwise use `key' 
 	Spindle.table.buildWrapper() Wrapper function for core application
 ]]
 
@@ -132,6 +133,19 @@ Spindle.table = {
 	max = function(tab)
 		Spindle.assert({"table"}, {tab})
 		return ({Spindle.table.minmax(tab)})[2]
+	end,
+	contains = function(t, val, mode)
+		Spindle.assertOverrides({"table", true}, {"table", true, "string"}, {t, val, mode})
+		if mode and mode ~= "key" and mode ~= "value" then error("`mode' must be either `key' or `value''", 2) end
+		mode = mode or "value"
+		if mode == "key" then
+			return t[val] ~= nil
+		else
+			for _, v in pairs(t) do
+				if v == val then return true end
+			end
+		end
+		return false
 	end,
 	buildWrapper = function()
 		Spindle.dev.todo("Write wrapper")

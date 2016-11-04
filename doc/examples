@@ -587,6 +587,16 @@ Spindle.table.min(t) -- -3
 [Spindle.table.max(table table)]
 local t = {-3, 2, 4, 9, 1}
 Spindle.table.max(t) -- 9
+[Spindle.table.contains(table t, mixed val[, string mode])]
+local t = {a = 1, b = 2, c = 3, d = 4, e = 5}
+Spindle.table.contains(t, "b")          -- false
+Spindle.table.contains(t, "b", "key")   -- true
+Spindle.table.contains(t, "b", "value") -- false
+Spindle.table.contains(t, "b", "marc")  -- error
+Spindle.table.contains(t, 3)            -- true
+Spindle.table.contains(t, 3, "key")     -- false
+Spindle.table.contains(t, 3, "value")   -- true
+Spindle.table.contains(t, 3, "marc")    -- error
 [FFIObject.extendProperty(string name, mixed _type)]
 FFIObject.extendProperty("test", 0)
 -- Creates the property "test" with default value `0` and type int to FFIObject
