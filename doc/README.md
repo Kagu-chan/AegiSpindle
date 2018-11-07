@@ -1,14 +1,14 @@
 AegiSpindle Documentation
 =========================
 
-###CORE
+### CORE
 * [Main](core/main.md) - AegiSpindle Core
 
-###ENTRY-SCRIPTS
+### ENTRY-SCRIPTS
 * [Aegisub](core/aegisub.md) - Aegisub Main Module (Entry Script)
 * [Console](core/console.md) - Console Main Module (Entry Script)
 
-###MODULES
+### MODULES
 * [Cache](modules/cache.md) - Value cache for AegiSpindle
 * [CMD](modules/cmd.md) - Spindle command line integration
 * [Config](modules/config.md) - Config cache for AegiSpindle
