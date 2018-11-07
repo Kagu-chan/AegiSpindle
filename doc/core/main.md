@@ -9,60 +9,60 @@ AegiSpindle Core
 
 > Core Module of AegiSpindle. In this Module all sub modules will be stored except pseudo classes.
 
-###Spindle.debug(...)
+### Spindle.debug(...)
 Debug function (Wrapper for print(...))
 ```lua
 Spindle.debug("Hello ", "World")
 ```
 
-###Spindle.sayHello()
+### Spindle.sayHello()
 Welcome Message, print out core version and used lua environment version
 
 
-###Spindle.library
+### Spindle.library
 Internal Core Cache Table
 
 
-###Spindle.library.version
+### Spindle.library.version
 Core Version
 
 
-###Spindle.library.devTracebackDefault
+### Spindle.library.devTracebackDefault
 Default TraceBack steps
 
 
-###Spindle.library.devPrintTodo
+### Spindle.library.devPrintTodo
 Indicates if AegiSpindle print out TODO-Messages or not
 
 
-###Spindle.library.devPrintFixme
+### Spindle.library.devPrintFixme
 Indicates if AegiSpindle print out FIXME-Messages or not
 
 
-###Spindle.library.devPrintDeprecated
+### Spindle.library.devPrintDeprecated
 Indicates if AegiSpindle print out DEPRECATED-Messages or not
 
 
-###Spindle.initialize(bool printTodo, bool printFixme, bool printDeprecated)
+### Spindle.initialize(bool printTodo, bool printFixme, bool printDeprecated)
 Initialize Core with given debug flags and generate Wrapper functions
 ```lua
 Spindle.initialize()
 Spindle.initialize(true, false, true)
 ```
 
-###Spindle.generateWrapper()
+### Spindle.generateWrapper()
 Iterates all registered modules and call buildWrapper if exists in module
 ```lua
 Spindle.generateWrapper() -- Calls the buildWrapper() function in all modules including this function
 ```
 
-###Spindle.initializeAegisub()
+### Spindle.initializeAegisub()
 Iterates all registered modules and call initAegisub if exists in module
 ```lua
 Spindle.initializeAegisub() -- Calls the initAegisub() function in all modules including this function
 ```
 
-###Spindle.assert(table types, table values[, bool silent_or_nil])
+### Spindle.assert(table types, table values[, bool silent_or_nil])
 Check function parameters.
 ```lua
 -- Simple assert of types: every parameter has a defined type
@@ -76,7 +76,7 @@ Spindle.assert({"string", true}, {"Hello World", 33})
 Spindle.assert({"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
 ```
 
-###Spindle.assertOverrides(...)
+### Spindle.assertOverrides(...)
 Check function parameters, but with multiple method signatures.
 ```lua
 -- If you use one parameter, it has to be a string.
@@ -85,51 +85,51 @@ Check function parameters, but with multiple method signatures.
 Spindle.assertOverrides({"string"}, {"string", true}, {"string", true, {"table, "string"}}, {"Hello World", 33, {a=1, b=2}})
 ```
 
-###Spindle.dev
+### Spindle.dev
 Development Sub Module
 
 
-###Spindle.dev.deeperTrace(int i)
+### Spindle.dev.deeperTrace(int i)
 Overwrite Spindle.library.devTracebackDefault for next dev call
 ```lua
 Spindle.dev.deeperTrace(4)
 ```
 
-###Spindle.dev.setDebug(string key, bool state)
+### Spindle.dev.setDebug(string key, bool state)
 Set print flag for given key to given state
 ```lua
 Spindle.dev.setDebug("todo", false)
 ```
 
-###Spindle.dev.disable(...)
+### Spindle.dev.disable(...)
 Disable print for given keys
 ```lua
 Spindle.dev.disable("todo", "fixme")
 ```
 
-###Spindle.dev.enable(...)
+### Spindle.dev.enable(...)
 Enable print for given keys
 ```lua
 Spindle.dev.enable("todo", "fixme")
 ```
 
-###Spindle.dev.from()
+### Spindle.dev.from()
 Catch traceback function at Spindle.library.devTracebackDefault position for dev message
 
 
-###Spindle.dev.todo(string message)
+### Spindle.dev.todo(string message)
 Print out a TODO-Message is print enabled
 ```lua
 Spindle.dev.todo("My TODO Message")
 ```
 
-###Spindle.dev.fixme(string message)
+### Spindle.dev.fixme(string message)
 Print out a FIXME-Message is print enabled
 ```lua
 Spindle.dev.fixme("Fixme, im coded as bad as possible!")
 ```
 
-###Spindle.dev.deprecated(string message)
+### Spindle.dev.deprecated(string message)
 Print out a DEPRECATED-Message is print enabled
 ```lua
 Spindle.dev.deprecated("I'm deprecated since V0.1 and will be removed in V1.0")
