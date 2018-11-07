@@ -34,7 +34,7 @@ the usage as CLI script and as plugin for Aegisub [2].
 | **STABLE**| *not yet* |
 | **DEV**   | `0.0.0`   |
 
-Please [REQUIREMENTS](deps)
+Please see [REQUIREMENTS](deps)
 
 ### Intendation
 Searching for subtitle libraries supporting ASS is not that hard.
@@ -47,7 +47,7 @@ are hard to extend or - in case of Yutils [4] (and NyuFX as well) - not
 longer supported.
 
 ### Environment and general principles
-AegiSpindle is in general just a set of modules. They may depend one on
+AegiSpindle is in general just a set of modules. They may depend on
 one or more other modules.
 
 We differ between three types of modules:
@@ -196,7 +196,7 @@ If you want this help,
   * Github-Link
 
 ### Something went wrong? Any ideas?
-If you find an issue in my code or want to share some useful additions for the library, please feel free to fork this project, commit your changes and send a pull request. Otherwise you count submit a new [issue](issues)
+If you find an issue in my code or want to share some useful additions for the library, please feel free to fork this project, commit your changes and send a pull request. Otherwise you coul'd submit a new [issue](issues)
 
 If it is doable and if it fits the library and coding style maybe it will get included.
 
